@@ -1,0 +1,195 @@
+/* pages/contact/contact.wxss */
+.container {
+  background-color: #f8f8f8;
+  padding-bottom: 40rpx;
+}
+
+/* 顶部图片 */
+.header-image {
+  width: 100%;
+  height: 360rpx;
+  overflow: hidden;
+}
+
+.header-image image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 卡片样式 */
+.contact-card, .map-card, .social-card, .form-card {
+  margin: 30rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.card-title {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30rpx;
+  position: relative;
+  padding-left: 20rpx;
+}
+
+.card-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8rpx;
+  width: 8rpx;
+  height: 30rpx;
+  background-color: var(--primary-color, #9d8252);
+  border-radius: 4rpx;
+}
+
+/* 联系信息项 */
+.contact-item {
+  display: flex;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+}
+
+.item-icon {
+  width: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item-icon image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.item-content {
+  flex: 1;
+}
+
+.item-label {
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.item-value {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.item-action {
+  margin-left: 20rpx;
+}
+
+.action-btn {
+  color: var(--primary-color, #9d8252);
+  font-size: 28rpx;
+  padding: 10rpx 20rpx;
+  border: 1px solid var(--primary-color, #9d8252);
+  border-radius: 30rpx;
+}
+
+/* 地图 */
+.hotel-map {
+  width: 100%;
+  height: 400rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+/* 社交媒体 */
+.social-list {
+  display: flex;
+  justify-content: space-around;
+}
+
+.social-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx;
+}
+
+.social-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 16rpx;
+}
+
+.social-name {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.social-value {
+  font-size: 24rpx;
+  color: #666;
+}
+
+/* 表单样式 */
+.form-desc {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 30rpx;
+}
+
+.form-item {
+  margin-bottom: 30rpx;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.required {
+  color: #ff4d4f;
+}
+
+.form-input {
+  height: 80rpx;
+  border: 1px solid #e0e0e0;
+  border-radius: 8rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  color: #333;
+  background-color: #fff;
+}
+
+.form-textarea {
+  width: auto;
+  height: 200rpx;
+  border: 1px solid #e0e0e0;
+  border-radius: 8rpx;
+  padding: 20rpx;
+  font-size: 28rpx;
+  color: #333;
+  background-color: #fff;
+}
+
+.form-submit {
+  margin-top: 40rpx;
+}
+
+.submit-btn {
+  background-color: var(--primary-color, #9d8252);
+  color: #fff;
+  font-size: 30rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+}
+
+.submit-btn.disabled {
+  background-color: #ccc;
+  color: #fff;
+}

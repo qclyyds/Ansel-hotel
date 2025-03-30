@@ -1,0 +1,279 @@
+/* pages/dining/dining.wxss */
+.container {
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+/* 餐厅选择器 */
+.restaurant-selector {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.restaurant-tab {
+  flex: 1;
+  padding: 20rpx 10rpx;
+  text-align: center;
+  position: relative;
+}
+
+.restaurant-tab.active {
+  color: var(--primary-color, #9d8252);
+}
+
+.restaurant-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rpx;
+  height: 4rpx;
+  background-color: var(--primary-color, #9d8252);
+}
+
+.tab-name {
+  font-size: 28rpx;
+  font-weight: 500;
+  margin-bottom: 4rpx;
+}
+
+.tab-type {
+  font-size: 22rpx;
+  color: #999;
+}
+
+/* 当前餐厅内容 */
+.restaurant-content {
+  padding-bottom: 40rpx;
+}
+
+/* 餐厅图片 */
+.restaurant-image {
+  width: 100%;
+  height: 400rpx;
+}
+
+.restaurant-image image {
+  width: 100%;
+  height: 100%;
+}
+
+/* 餐厅信息 */
+.restaurant-info {
+  padding: 30rpx;
+  background-color: #fff;
+  margin-bottom: 20rpx;
+}
+
+.restaurant-name {
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+}
+
+.restaurant-description {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 30rpx;
+}
+
+.info-items {
+  border-top: 1px solid #f0f0f0;
+  padding-top: 20rpx;
+}
+
+.info-item {
+  display: flex;
+  padding: 16rpx 0;
+}
+
+.info-label {
+  width: 140rpx;
+  font-size: 28rpx;
+  color: #999;
+}
+
+.info-value {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.phone {
+  color: var(--primary-color, #9d8252);
+}
+
+/* 特色菜品 */
+.specialties-section {
+  background-color: #fff;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 30rpx;
+  position: relative;
+  padding-left: 20rpx;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 6rpx;
+  width: 8rpx;
+  height: 30rpx;
+  background-color: var(--primary-color, #9d8252);
+  border-radius: 4rpx;
+}
+
+.specialties-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.specialty-item {
+  display: flex;
+  margin-bottom: 30rpx;
+  padding-bottom: 30rpx;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.specialty-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.specialty-image {
+  width: 200rpx;
+  height: 150rpx;
+  margin-right: 20rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.specialty-image image {
+  width: 100%;
+  height: 100%;
+}
+
+.specialty-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.specialty-name {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333;
+  margin-bottom: 10rpx;
+}
+
+.specialty-description {
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.specialty-price {
+  font-size: 28rpx;
+  color: #e65100;
+  font-weight: 500;
+  margin-top: 10rpx;
+}
+
+/* 预订表单 */
+.booking-section {
+  background-color: #fff;
+  padding: 30rpx;
+}
+
+.booking-form {
+  margin-bottom: 30rpx;
+}
+
+.form-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.picker-value {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.picker-arrow {
+  margin-left: 10rpx;
+  color: #ccc;
+  transform: rotate(90deg);
+}
+
+.guest-counter {
+  display: flex;
+  align-items: center;
+}
+
+.counter-btn {
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 56rpx;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  font-size: 28rpx;
+}
+
+.counter-btn.disabled {
+  color: #ccc;
+  border-color: #eee;
+}
+
+.counter-number {
+  width: 80rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+
+.booking-notice {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 30rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-notice text {
+  margin-bottom: 10rpx;
+}
+
+.booking-submit {
+  background-color: var(--primary-color, #9d8252);
+  color: #fff;
+  font-size: 30rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+} 

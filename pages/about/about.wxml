@@ -1,0 +1,21 @@
+<!--pages/about/about.wxml-->
+<view class="container">
+  <view class="header">
+    <view class="header-title">更多服务</view>
+  </view>
+  
+  <view class="menu-list">
+    <view class="menu-item" wx:for="{{menuList}}" wx:key="id" bindtap="handleMenuClick" data-id="{{item.id}}">
+      <view class="menu-left">
+        <image class="menu-icon" src="{{item.icon}}" mode="aspectFit"></image>
+        <view class="menu-name">{{item.name}}</view>
+      </view>
+      <view class="menu-arrow">></view>
+    </view>
+  </view>
+  
+  <view class="footer">
+    <view class="version">ANSEL酒店 v1.0.0</view>
+    <view class="copyright">© 2023 ANSEL Hotels & Resorts. All Rights Reserved.</view>
+  </view>
+</view>

@@ -1,0 +1,102 @@
+<!--pages/roomDetail/roomDetail.wxml-->
+<view class="container" wx:if="{{room}}">
+  <!-- 顶部导航 -->
+  <view class="header">
+    <view class="back-icon" bindtap="navigateBack">
+      <text class="icon">←</text>
+    </view>
+    <view class="page-title">{{room.name}}</view>
+    <view class="header-icon">
+      <image class="heart-icon" src="/images/heart.png" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <!-- 房间轮播图 -->
+  <swiper class="room-banner" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{5000}}" circular="{{true}}" bindchange="bannerChange">
+    <swiper-item wx:for="{{roomImages}}" wx:key="*this">
+      <image src="{{item}}" class="banner-image" mode="aspectFill" bindtap="previewImage" data-index="{{index}}"></image>
+    </swiper-item>
+  </swiper>
+  <view class="banner-indicator">{{bannerCurrent + 1}}/{{roomImages.length}}</view>
+
+  <!-- 房间信息卡片 -->
+  <view class="room-info-card">
+    <view class="room-name">{{room.name}}</view>
+    <view class="room-specs">
+      <view class="spec-item">{{room.size}}</view>
+      <view class="spec-divider">·</view>
+      <view class="spec-item">{{room.bedType}}</view>
+      <view class="spec-divider">·</view>
+      <view class="spec-item">{{room.view}}</view>
+    </view>
+  </view>
+
+  <!-- 标签页 -->
+  <view class="tabs">
+    <view class="tab-header">
+      <view wx:for="{{tabs}}" wx:key="id" class="tab-item {{activeTab === item.id ? 'active' : ''}}" bindtap="switchTab" data-tab="{{item.id}}">
+        {{item.name}}
+      </view>
+    </view>
+    
+    <!-- 详情标签内容 -->
+    <view class="tab-content" hidden="{{activeTab !== 'detail'}}">
+      <view class="content-section">
+        <view class="section-title">客房描述</view>
+        <view class="description">{{room.description}}</view>
+      </view>
+    </view>
+    
+    <!-- 设施与服务标签内容 -->
+    <view class="tab-content" hidden="{{activeTab !== 'service'}}">
+      <view class="content-section">
+        <view class="section-title">客房设施</view>
+        <view class="amenities-grid {{showAllAmenities ? 'show-all' : ''}}">
+          <view class="amenity-item" wx:for="{{amenities}}" wx:key="name">
+            <image class="amenity-icon" src="{{item.icon}}" mode="aspectFit"></image>
+            <view class="amenity-name">{{item.name}}</view>
+          </view>
+        </view>
+        <view class="show-more-btn" bindtap="toggleAllAmenities">
+          {{showAllAmenities ? '收起' : '显示全部设施'}}
+        </view>
+      </view>
+      
+      <view class="content-section">
+        <view class="section-title">客房服务</view>
+        <view class="service-list">
+          <view class="service-item" wx:for="{{room.services}}" wx:key="*this">
+            <text class="service-bullet">•</text>
+            <text class="service-text">{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 预订政策标签内容 -->
+    <view class="tab-content" hidden="{{activeTab !== 'policy'}}">
+      <view class="content-section">
+        <view class="section-title">预订须知</view>
+        <view class="policy-list">
+          <view class="policy-item" wx:for="{{room.policies}}" wx:key="*this">
+            <text class="policy-bullet">•</text>
+            <text class="policy-text">{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部预订栏 -->
+  <view class="booking-bar">
+    <view class="booking-info">
+      <view class="booking-dates">{{selectDates}}</view>
+      <view class="booking-price">
+        <text class="price-value">¥{{room.pricePerNight}}</text>
+        <text class="price-unit">/晚</text>
+      </view>
+      <view class="price-total">总计: ¥{{finalPrice}} ({{totalNights}}晚)</view>
+    </view>
+    <button class="booking-btn" bindtap="navigateToBooking">立即预订</button>
+  </view>
+</view>

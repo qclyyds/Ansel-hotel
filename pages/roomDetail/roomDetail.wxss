@@ -1,0 +1,253 @@
+/* pages/roomDetail/roomDetail.wxss */
+.container {
+  padding-bottom: 140rpx;
+  background-color: #fff;
+}
+
+/* 顶部导航 */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.05);
+}
+
+.back-icon {
+  font-size: 40rpx;
+  padding: 10rpx;
+}
+
+.page-title {
+  font-size: 34rpx;
+  font-weight: 500;
+}
+
+.heart-icon {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+/* 房间轮播图 */
+.room-banner {
+  width: 100%;
+  height: 500rpx;
+  position: relative;
+}
+
+.banner-image {
+  width: 100%;
+  height: 100%;
+}
+
+.banner-indicator {
+  position: absolute;
+  bottom: 30rpx;
+  right: 30rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  padding: 6rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 24rpx;
+}
+
+/* 房间信息卡片 */
+.room-info-card {
+  padding: 30rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.room-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+}
+
+.room-specs {
+  display: flex;
+  color: #666;
+  font-size: 28rpx;
+}
+
+.spec-divider {
+  margin: 0 16rpx;
+}
+
+/* 标签页 */
+.tabs {
+  background-color: #fff;
+}
+
+.tab-header {
+  display: flex;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 24rpx 0;
+  font-size: 30rpx;
+  color: #666;
+  position: relative;
+}
+
+.tab-item.active {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 4rpx;
+  background-color: var(--primary-color);
+}
+
+.tab-content {
+  padding: 30rpx;
+}
+
+.content-section {
+  margin-bottom: 40rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  margin-bottom: 20rpx;
+}
+
+.description {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* 设施网格 */
+.amenities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30rpx;
+  max-height: 320rpx;
+  overflow: hidden;
+  transition: max-height 0.3s;
+}
+
+.amenities-grid.show-all {
+  max-height: 2000rpx;
+}
+
+.amenity-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.amenity-icon {
+  width: 60rpx;
+  height: 60rpx;
+  margin-bottom: 10rpx;
+}
+
+.amenity-name {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.show-more-btn {
+  text-align: center;
+  color: var(--primary-color);
+  padding: 20rpx 0;
+  font-size: 28rpx;
+}
+
+/* 服务列表 */
+.service-list, .policy-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.service-item, .policy-item {
+  display: flex;
+  margin-bottom: 16rpx;
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+.service-bullet, .policy-bullet {
+  margin-right: 16rpx;
+  color: var(--primary-color);
+}
+
+/* 底部预订栏 */
+.booking-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1rpx solid #f0f0f0;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+  z-index: 99;
+}
+
+.booking-info {
+  flex: 1;
+}
+
+.booking-dates {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 8rpx;
+}
+
+.booking-price {
+  display: flex;
+  align-items: baseline;
+}
+
+.price-value {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.price-unit {
+  font-size: 24rpx;
+  color: #999;
+  margin-left: 4rpx;
+}
+
+.price-total {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.booking-btn {
+  background-color: var(--primary-color);
+  color: #fff;
+  padding: 0 40rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}

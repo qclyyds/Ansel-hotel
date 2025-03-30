@@ -1,0 +1,347 @@
+/* pages/aboutUs/aboutUs.wxss */
+page {
+  height: 100%;
+  background-color: #f8f8f8;
+}
+
+.aboutus-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  background-color: #f8f8f8;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 标签导航 */
+.tab-bar {
+  display: flex;
+  background-color: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  justify-content: space-around;
+  padding: 0 10rpx;
+}
+
+.tab-item {
+  text-align: center;
+  padding: 26rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  position: relative;
+  transition: all 0.3s ease;
+  margin: 0 10rpx;
+  min-width: 140rpx;
+}
+
+.tab-item.active {
+  color: var(--primary-color, #9d8252);
+  font-weight: 600;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 4rpx;
+  background-color: var(--primary-color, #9d8252);
+  border-radius: 4rpx;
+  animation: tabIndicatorIn 0.3s ease-out;
+}
+
+@keyframes tabIndicatorIn {
+  from { width: 0; opacity: 0; }
+  to { width: 40rpx; opacity: 1; }
+}
+
+/* 内容区域 */
+.content-scroll {
+  flex: 1;
+  padding: 30rpx;
+  margin-bottom: 40rpx;
+}
+
+.content-section {
+  padding-bottom: 40rpx;
+  animation: sectionFadeIn 0.4s ease-out;
+}
+
+@keyframes sectionFadeIn {
+  from { opacity: 0; transform: translateY(30rpx); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 公司介绍 */
+.company-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 40rpx;
+  padding: 40rpx 0;
+}
+
+.company-logo {
+  width: 180rpx;
+  height: 180rpx;
+  margin-bottom: 30rpx;
+  border-radius: 20rpx;
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.company-logo:active {
+  transform: scale(1.05);
+}
+
+.company-name {
+  font-size: 38rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 14rpx;
+  letter-spacing: 2rpx;
+}
+
+.company-slogan {
+  font-size: 28rpx;
+  color: #666;
+  background: linear-gradient(135deg, var(--primary-color, #9d8252) 0%, #cabc9e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 500;
+  letter-spacing: 1rpx;
+}
+
+.section-card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 36rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  transform: translateZ(0);
+}
+
+.section-card:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.04);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 24rpx;
+  border-left: 6rpx solid var(--primary-color, #9d8252);
+  padding-left: 20rpx;
+  display: flex;
+  align-items: center;
+}
+
+.section-content {
+  padding: 0 10rpx;
+}
+
+.description-text {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+/* 发展历程 */
+.timeline {
+  padding: 20rpx 0;
+}
+
+.timeline-item {
+  display: flex;
+  margin-bottom: 40rpx;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-year {
+  width: 120rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--primary-color, #9d8252);
+  padding-top: 6rpx;
+}
+
+.timeline-connector {
+  width: 60rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.timeline-dot {
+  width: 20rpx;
+  height: 20rpx;
+  border-radius: 50%;
+  background-color: var(--primary-color, #9d8252);
+  margin-top: 10rpx;
+  box-shadow: 0 0 0 4rpx rgba(157, 130, 82, 0.2);
+}
+
+.timeline-line {
+  width: 2rpx;
+  flex: 1;
+  background-color: #ddd;
+  margin-top: 10rpx;
+}
+
+.timeline-content {
+  flex: 1;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.timeline-content:active {
+  transform: translateX(4rpx);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.timeline-event {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* 荣誉资质 */
+.awards-list {
+  padding: 20rpx 0;
+}
+
+.award-item {
+  display: flex;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.award-item:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.award-year {
+  width: 120rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: var(--primary-color, #9d8252);
+}
+
+.award-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.award-icon {
+  margin-right: 20rpx;
+  width: 50rpx;
+  height: 50rpx;
+  background-color: rgba(157, 130, 82, 0.1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.trophy-icon {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.award-name {
+  font-size: 28rpx;
+  color: #333;
+  flex: 1;
+}
+
+/* 联系我们 */
+.contact-list {
+  padding: 20rpx 0;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.contact-item:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.contact-icon {
+  margin-right: 20rpx;
+  width: 60rpx;
+  height: 60rpx;
+  background-color: rgba(157, 130, 82, 0.1);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.contact-detail {
+  flex: 1;
+}
+
+.contact-label {
+  font-size: 26rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.contact-value {
+  font-size: 28rpx;
+  color: #333;
+  word-break: break-all;
+}
+
+.contact-action {
+  color: var(--primary-color, #9d8252);
+  font-size: 28rpx;
+  padding: 12rpx 24rpx;
+  border: 1px solid var(--primary-color, #9d8252);
+  border-radius: 30rpx;
+  transition: all 0.3s ease;
+  background-color: rgba(157, 130, 82, 0.05);
+}
+
+.contact-action:active {
+  background-color: rgba(157, 130, 82, 0.15);
+  transform: scale(0.95);
+}

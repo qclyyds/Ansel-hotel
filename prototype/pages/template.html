@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面模板 - Ansel酒店</title>
+    <!-- TailwindCSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- 自定义样式 -->
+    <link href="../css/common.css" rel="stylesheet">
+</head>
+<body>
+    <!-- iOS状态栏 -->
+    <div class="ios-status-bar">
+        <div class="time">12:30</div>
+        <div class="status-icons">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <!-- 导航栏 -->
+    <div class="nav-header">
+        <div class="nav-back" onclick="goBack()"><i class="fas fa-chevron-left"></i></div>
+        <div class="nav-title">页面标题</div>
+        <div class="nav-action">操作</div>
+    </div>
+    
+    <!-- 页面内容 -->
+    <div class="content">
+        <!-- 在这里添加页面特定内容 -->
+        <div class="card">
+            <h2 class="text-xl font-bold mb-4">内容区域</h2>
+            <p>这是页面的主要内容区域，根据不同页面进行自定义。</p>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="tab-bar">
+        <div class="tab-item active" id="tab-home" onclick="navigateTo('home.html')">
+            <div class="tab-icon"><i class="fas fa-home"></i></div>
+            <div>首页</div>
+        </div>
+        <div class="tab-item" id="tab-rooms" onclick="navigateTo('rooms.html')">
+            <div class="tab-icon"><i class="fas fa-bed"></i></div>
+            <div>房间</div>
+        </div>
+        <div class="tab-item" id="tab-orders" onclick="navigateTo('my-orders.html')">
+            <div class="tab-icon"><i class="fas fa-receipt"></i></div>
+            <div>订单</div>
+        </div>
+        <div class="tab-item" id="tab-member" onclick="navigateTo('member.html')">
+            <div class="tab-icon"><i class="fas fa-user"></i></div>
+            <div>会员</div>
+        </div>
+        <div class="tab-item" id="tab-more" onclick="navigateTo('about.html')">
+            <div class="tab-icon"><i class="fas fa-ellipsis-h"></i></div>
+            <div>更多</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../js/common.js"></script>
+</body>
+</html> 

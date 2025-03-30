@@ -1,0 +1,66 @@
+<!--pages/rooms/rooms.wxml-->
+<view class="container">
+  <!-- 顶部搜索栏 -->
+  <view class="search-bar">
+    <view class="back-icon" bindtap="navigateBack">
+      <text class="icon">←</text>
+    </view>
+    <view class="search-input-container">
+      <icon type="search" size="16" color="#999"></icon>
+      <input class="search-input" placeholder="搜索房型" value="{{searchQuery}}" bindinput="onSearchInput" confirm-type="search"></input>
+      <view class="clear-icon" wx:if="{{searchQuery}}" bindtap="clearSearch">
+        <icon type="clear" size="16" color="#999"></icon>
+      </view>
+    </view>
+  </view>
+
+  <!-- 预订信息 -->
+  <view class="booking-info card">
+    <view class="booking-detail">
+      <view class="date-range">{{dateRange}}</view>
+      <view class="guest-info">{{guestInfo}}</view>
+    </view>
+    <view class="modify-btn" bindtap="modifySearch">修改</view>
+  </view>
+
+  <!-- 过滤标签 -->
+  <scroll-view scroll-x class="filter-scroll">
+    <view class="filter-tags">
+      <view class="filter-tag {{filters.all ? 'active' : ''}}" bindtap="toggleFilter" data-filter="all">全部</view>
+      <view class="filter-tag {{filters.deluxe ? 'active' : ''}}" bindtap="toggleFilter" data-filter="deluxe">豪华客房</view>
+      <view class="filter-tag {{filters.suite ? 'active' : ''}}" bindtap="toggleFilter" data-filter="suite">套房</view>
+      <view class="filter-tag {{filters.family ? 'active' : ''}}" bindtap="toggleFilter" data-filter="family">家庭房</view>
+      <view class="filter-tag {{filters.presidential ? 'active' : ''}}" bindtap="toggleFilter" data-filter="presidential">总统套房</view>
+    </view>
+  </scroll-view>
+
+  <!-- 房间列表 -->
+  <view class="room-list">
+    <view class="room-card" wx:for="{{rooms}}" wx:key="id" bindtap="navigateToRoomDetail" data-id="{{item.id}}">
+      <view class="room-image-container">
+        <image class="room-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="room-badge" wx:if="{{item.discount}}">特惠</view>
+      </view>
+      <view class="room-info">
+        <view class="room-header">
+          <view class="room-name">{{item.name}}</view>
+          <view class="save-btn">
+            <image class="heart-icon" src="/images/heart.png" mode="aspectFit"></image>
+          </view>
+        </view>
+        <view class="room-detail">{{item.size}} · {{item.bedType}} · {{item.view}}</view>
+        <view class="room-services">
+          <view class="service-tag" wx:for="{{item.services}}" wx:for-item="service" wx:key="*this">{{service}}</view>
+        </view>
+        <view class="room-price-section">
+          <view class="room-price">
+            <text class="price-value">¥{{item.price}}</text>
+            <text class="price-unit">/晚</text>
+            <text class="original-price" wx:if="{{item.discount}}">¥{{item.original}}</text>
+          </view>
+          <view class="book-btn">预订</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

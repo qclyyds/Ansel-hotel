@@ -1,0 +1,107 @@
+<!--pages/dining/dining.wxml-->
+<view class="container">
+  <!-- 餐厅选择器 -->
+  <view class="restaurant-selector">
+    <view 
+      wx:for="{{restaurants}}" 
+      wx:key="id" 
+      class="restaurant-tab {{activeRestaurant === index ? 'active' : ''}}"
+      bindtap="switchRestaurant"
+      data-index="{{index}}"
+    >
+      <view class="tab-name">{{item.name}}</view>
+      <view class="tab-type">{{item.type}}</view>
+    </view>
+  </view>
+  
+  <!-- 当前餐厅内容 -->
+  <view class="restaurant-content">
+    <!-- 餐厅图片 -->
+    <view class="restaurant-image" bindtap="previewRestaurantImage">
+      <image src="{{restaurants[activeRestaurant].image}}" mode="aspectFill"></image>
+    </view>
+    
+    <!-- 餐厅信息 -->
+    <view class="restaurant-info">
+      <view class="restaurant-name">{{restaurants[activeRestaurant].name}}</view>
+      <view class="restaurant-description">{{restaurants[activeRestaurant].description}}</view>
+      
+      <view class="info-items">
+        <view class="info-item">
+          <view class="info-label">开放时间</view>
+          <view class="info-value">{{restaurants[activeRestaurant].openTime}}</view>
+        </view>
+        
+        <view class="info-item">
+          <view class="info-label">餐厅位置</view>
+          <view class="info-value">{{restaurants[activeRestaurant].location}}</view>
+        </view>
+        
+        <view class="info-item">
+          <view class="info-label">预订电话</view>
+          <view class="info-value phone" bindtap="callRestaurant">{{restaurants[activeRestaurant].phone}}</view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 特色菜品 -->
+    <view class="specialties-section">
+      <view class="section-title">精选推荐</view>
+      <view class="specialties-list">
+        <view class="specialty-item" wx:for="{{restaurants[activeRestaurant].specialties}}" wx:key="name">
+          <view class="specialty-image" bindtap="previewDishImage" data-src="{{item.image}}">
+            <image src="{{item.image}}" mode="aspectFill"></image>
+          </view>
+          <view class="specialty-info">
+            <view class="specialty-name">{{item.name}}</view>
+            <view class="specialty-description">{{item.description}}</view>
+            <view class="specialty-price">¥{{item.price}}</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 预订表单 -->
+    <view class="booking-section">
+      <view class="section-title">在线预订</view>
+      
+      <view class="booking-form">
+        <view class="form-group">
+          <view class="form-label">用餐日期</view>
+          <picker mode="date" value="{{bookingDate}}" start="{{bookingDate}}" end="2025-12-31" bindchange="bindDateChange">
+            <view class="picker-value">
+              <view>{{bookingDate}}</view>
+              <view class="picker-arrow">></view>
+            </view>
+          </picker>
+        </view>
+        
+        <view class="form-group">
+          <view class="form-label">用餐时间</view>
+          <picker mode="selector" range="{{timeSlots}}" value="5" bindchange="bindTimeChange">
+            <view class="picker-value">
+              <view>{{bookingTime}}</view>
+              <view class="picker-arrow">></view>
+            </view>
+          </picker>
+        </view>
+        
+        <view class="form-group">
+          <view class="form-label">用餐人数</view>
+          <view class="guest-counter">
+            <view class="counter-btn {{guestCount <= 1 ? 'disabled' : ''}}" bindtap="adjustGuestCount" data-action="minus">-</view>
+            <view class="counter-number">{{guestCount}}</view>
+            <view class="counter-btn {{guestCount >= 20 ? 'disabled' : ''}}" bindtap="adjustGuestCount" data-action="plus">+</view>
+          </view>
+        </view>
+      </view>
+      
+      <view class="booking-notice">
+        <text>* 提前预订可享受优先安排座位</text>
+        <text>* 如需取消预订，请提前2小时致电</text>
+      </view>
+      
+      <button class="booking-submit" bindtap="submitBooking">立即预订</button>
+    </view>
+  </view>
+</view> 

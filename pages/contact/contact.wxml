@@ -1,0 +1,109 @@
+<!--pages/contact/contact.wxml-->
+<view class="container">
+  <!-- 顶部图片 -->
+  <view class="header-image">
+    <image src="/images/contact/contact-banner.jpg" mode="aspectFill"></image>
+  </view>
+  
+  <!-- 联系信息部分 -->
+  <view class="contact-card">
+    <view class="card-title">联系我们</view>
+    
+    <view class="contact-item">
+      <view class="item-icon">
+        <image src="/images/contact/phone.png" mode="aspectFit"></image>
+      </view>
+      <view class="item-content">
+        <view class="item-label">电话</view>
+        <view class="item-value">{{contactInfo.phone}}</view>
+      </view>
+      <view class="item-action" bindtap="callPhone">
+        <view class="action-btn">拨打</view>
+      </view>
+    </view>
+    
+    <view class="contact-item">
+      <view class="item-icon">
+        <image src="/images/contact/email.png" mode="aspectFit"></image>
+      </view>
+      <view class="item-content">
+        <view class="item-label">邮箱</view>
+        <view class="item-value">{{contactInfo.email}}</view>
+      </view>
+      <view class="item-action" bindtap="copyEmail">
+        <view class="action-btn">复制</view>
+      </view>
+    </view>
+    
+    <view class="contact-item">
+      <view class="item-icon">
+        <image src="/images/contact/location.png" mode="aspectFit"></image>
+      </view>
+      <view class="item-content">
+        <view class="item-label">地址</view>
+        <view class="item-value">{{contactInfo.address}}</view>
+      </view>
+      <view class="item-action" bindtap="navigateToHotel">
+        <view class="action-btn">导航</view>
+      </view>
+    </view>
+    
+    <view class="contact-item">
+      <view class="item-icon">
+        <image src="/images/contact/time.png" mode="aspectFit"></image>
+      </view>
+      <view class="item-content">
+        <view class="item-label">服务时间</view>
+        <view class="item-value">{{contactInfo.workTime}}</view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 酒店地图位置 -->
+  <view class="map-card">
+    <view class="card-title">酒店位置</view>
+    <map class="hotel-map" longitude="{{location.longitude}}" latitude="{{location.latitude}}" scale="16" markers="{{location.markers}}" show-location></map>
+  </view>
+  
+  <!-- 社交媒体 -->
+  <view class="social-card">
+    <view class="card-title">关注我们</view>
+    <view class="social-list">
+      <view class="social-item" wx:for="{{contactInfo.socialMedia}}" wx:key="name" bindtap="{{index === 0 ? 'copyWechat' : ''}}">
+        <image class="social-icon" src="{{item.icon}}" mode="aspectFit"></image>
+        <view class="social-name">{{item.name}}</view>
+        <view class="social-value">{{item.value}}</view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 留言表单 -->
+  <view class="form-card">
+    <view class="card-title">在线留言</view>
+    <view class="form-desc">如有任何问题或建议，请填写以下表单，我们将尽快回复您。</view>
+    
+    <view class="form-item">
+      <view class="form-label">姓名 <text class="required">*</text></view>
+      <input class="form-input" placeholder="请输入您的姓名" value="{{formData.name}}" bindinput="inputChange" data-field="name" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">手机 <text class="required">*</text></view>
+      <input class="form-input" type="number" placeholder="请输入您的手机号码" value="{{formData.phone}}" bindinput="inputChange" data-field="phone" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">邮箱</view>
+      <input class="form-input" placeholder="请输入您的邮箱地址(选填)" value="{{formData.email}}" bindinput="inputChange" data-field="email" />
+    </view>
+    
+    <view class="form-item">
+      <view class="form-label">留言内容 <text class="required">*</text></view>
+      <textarea class="form-textarea" placeholder="请输入您的留言内容(200字以内)" maxlength="200" value="{{formData.content}}" bindinput="inputChange" data-field="content"></textarea>
+    </view>
+    
+    <view class="form-submit">
+      <button class="submit-btn {{submitDisabled ? 'disabled' : ''}}" bindtap="submitForm">提交留言</button>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,104 @@
+<!--pages/orderInfo/orderInfo.wxml-->
+<view class="container" wx:if="{{room}}">
+  <!-- 顶部状态栏 -->
+  <view class="status-section">
+    <view class="status-icon {{orderStatus === 'success' ? 'success' : 'failed'}}">
+      <view class="icon">{{orderStatus === 'success' ? '✓' : '✗'}}</view>
+    </view>
+    <view class="status-title">{{orderStatus === 'success' ? '预订成功' : '预订失败'}}</view>
+    <view class="status-desc" wx:if="{{orderStatus === 'success'}}">请在 {{countdownFormatted}} 内完成支付</view>
+    <view class="status-desc" wx:else>支付超时，订单已取消</view>
+  </view>
+
+  <!-- 订单信息卡片 -->
+  <view class="order-card card">
+    <view class="section-title">订单信息</view>
+    
+    <view class="info-item" bindtap="copyOrderId">
+      <view class="info-label">订单号</view>
+      <view class="info-value">
+        {{orderId}}
+        <text class="copy-text">复制</text>
+      </view>
+    </view>
+    
+    <view class="info-item">
+      <view class="info-label">下单时间</view>
+      <view class="info-value">{{orderTime}}</view>
+    </view>
+    
+    <view class="info-item">
+      <view class="info-label">支付金额</view>
+      <view class="info-value price-value">¥{{orderPrice}}</view>
+    </view>
+  </view>
+
+  <!-- 房间信息卡片 -->
+  <view class="room-card card">
+    <view class="section-title">房间信息</view>
+    
+    <view class="room-info">
+      <image class="room-image" src="{{room.image}}" mode="aspectFill"></image>
+      <view class="room-brief">
+        <view class="room-name">{{room.name}}</view>
+        <view class="room-spec">{{room.size}} · {{room.bedType}} · {{room.view}}</view>
+        <view class="room-date">{{room.checkInDate}} - {{room.checkOutDate}} ({{room.nights}}晚)</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 入住信息卡片 -->
+  <view class="guest-card card">
+    <view class="section-title">入住信息</view>
+    
+    <view class="info-item">
+      <view class="info-label">入住人</view>
+      <view class="info-value">{{room.guestName}}</view>
+    </view>
+    
+    <view class="info-item">
+      <view class="info-label">联系电话</view>
+      <view class="info-value">{{room.guestPhone}}</view>
+    </view>
+    
+    <view class="info-item">
+      <view class="info-label">入住人数</view>
+      <view class="info-value">{{room.guestCount}}</view>
+    </view>
+  </view>
+
+  <!-- 底部按钮 -->
+  <view class="bottom-buttons">
+    <block wx:if="{{orderStatus === 'success'}}">
+      <button class="primary-btn" bindtap="showPaymentQR">立即支付</button>
+      <button class="secondary-btn" bindtap="cancelOrder">取消订单</button>
+    </block>
+    <block wx:else>
+      <button class="primary-btn" bindtap="backToHome">返回首页</button>
+      <button class="secondary-btn" bindtap="contactService">联系客服</button>
+    </block>
+  </view>
+
+  <!-- 支付二维码弹窗 -->
+  <view class="payment-popup {{paymentQRVisible ? 'show' : ''}}">
+    <view class="popup-mask" bindtap="hidePaymentQR"></view>
+    <view class="popup-content">
+      <view class="popup-header">
+        <view class="popup-title">请扫码支付</view>
+        <view class="close-icon" bindtap="hidePaymentQR">×</view>
+      </view>
+      
+      <view class="payment-qr">
+        <image class="qr-code" src="/images/payment/qr-code.png" mode="aspectFit"></image>
+        <view class="qr-price">¥{{orderPrice}}</view>
+        <view class="qr-tip">请使用微信扫一扫</view>
+        <view class="qr-countdown">支付倒计时: {{countdownFormatted}}</view>
+      </view>
+      
+      <view class="payment-actions">
+        <button class="secondary-btn" bindtap="hidePaymentQR">稍后支付</button>
+        <button class="primary-btn" bindtap="viewOrder">支付完成</button>
+      </view>
+    </view>
+  </view>
+</view>

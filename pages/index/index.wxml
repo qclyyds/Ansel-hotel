@@ -1,0 +1,101 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 顶部导航栏 -->
+  <view class="header">
+    <view class="hotel-name">ANSEL HOTEL</view>
+    <view class="header-right">
+      <image class="header-icon" src="/images/notification.png" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <!-- 轮播图 -->
+  <swiper class="banner" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{5000}}" circular="{{true}}">
+    <swiper-item wx:for="{{banners}}" wx:key="id">
+      <image src="{{item.image}}" mode="aspectFill" class="banner-image"></image>
+      <view class="banner-text">
+        <view class="banner-title">{{item.title}}</view>
+        <view class="banner-subtitle">{{item.subtitle}}</view>
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 预订区域 -->
+  <view class="booking-section card">
+    <view class="section-title">预订您的住宿</view>
+    <view class="date-section">
+      <view class="date-box">
+        <view class="date-label">入住日期</view>
+        <picker mode="date" value="{{checkInDate}}" start="2023-01-01" end="2030-12-31" bindchange="bindCheckInDateChange">
+          <view class="date-value">{{checkInDate}}</view>
+        </picker>
+      </view>
+      <view class="date-arrow">→</view>
+      <view class="date-box">
+        <view class="date-label">离店日期</view>
+        <picker mode="date" value="{{checkOutDate}}" start="2023-01-01" end="2030-12-31" bindchange="bindCheckOutDateChange">
+          <view class="date-value">{{checkOutDate}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="guest-section">
+      <view class="guest-label">入住人数、房间</view>
+      <picker mode="selector" range="{{guestOptions}}" value="{{guestIndex}}" bindchange="bindGuestChange">
+        <view class="guest-value">
+          {{guestOptions[guestIndex]}}
+          <view class="selector-icon">▼</view>
+        </view>
+      </picker>
+    </view>
+    <view class="promotion-code">
+      <checkbox value="promotion" checked="{{usePromotion}}" bindtap="togglePromotion" />
+      <text>使用促销码</text>
+    </view>
+    <button class="search-btn primary-btn" bindtap="searchRooms">查询可预订房间</button>
+  </view>
+
+  <!-- 房型推荐 -->
+  <view class="section">
+    <view class="section-header">
+      <view class="section-title">特色房型</view>
+      <view class="view-all" bindtap="navigateToRooms">查看全部</view>
+    </view>
+    <scroll-view scroll-x="true" class="room-scroll">
+      <view class="room-card" wx:for="{{featuredRooms}}" wx:key="id" bindtap="navigateToRoomDetail" data-id="{{item.id}}">
+        <image class="room-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="room-info">
+          <view class="room-name">{{item.name}}</view>
+          <view class="room-brief">{{item.size}} · {{item.bedType}} · {{item.view}}</view>
+          <view class="room-price">¥{{item.price}}<text class="price-unit">/晚</text></view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 酒店服务 -->
+  <view class="section">
+    <view class="section-header">
+      <view class="section-title">尊享服务</view>
+    </view>
+    <view class="services-grid">
+      <view class="service-item" wx:for="{{services}}" wx:key="id">
+        <image class="service-icon" src="{{item.icon}}"></image>
+        <view class="service-name">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 关于酒店 -->
+  <view class="about-section">
+    <image class="about-image" src="/images/hotel-about.jpg" mode="aspectFill"></image>
+    <view class="about-content">
+      <view class="about-title">关于Ansel酒店</view>
+      <view class="about-desc">Ansel酒店位于城市中心，提供奢华体验，拥有一流的设施与服务，是您商务和休闲的理想选择。</view>
+      <view class="about-btn" bindtap="navigateToAbout">了解更多</view>
+    </view>
+  </view>
+
+  <!-- 底部客服 -->
+  <view class="customer-service" bindtap="navigateToAiChat">
+    <image class="cs-icon" src="/images/customer-service.png" mode="aspectFit"></image>
+  </view>
+</view>

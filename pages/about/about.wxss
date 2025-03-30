@@ -1,0 +1,77 @@
+/* pages/about/about.wxss */
+.container {
+  padding: 0 0 40rpx 0;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+/* 头部 */
+.header {
+  padding: 40rpx 30rpx;
+  background-color: #fff;
+}
+
+.header-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 菜单列表 */
+.menu-list {
+  margin: 30rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.menu-name {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.menu-arrow {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 底部 */
+.footer {
+  text-align: center;
+  padding: 60rpx 0 30rpx;
+}
+
+.version {
+  font-size: 24rpx;
+  color: #999;
+  margin-bottom: 10rpx;
+}
+
+.copyright {
+  font-size: 22rpx;
+  color: #bbb;
+}

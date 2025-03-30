@@ -1,0 +1,148 @@
+<!--pages/aboutUs/aboutUs.wxml-->
+<view class="container aboutus-container">
+  <!-- 内容区域，移除顶部填充 -->
+  <view>
+    <!-- 标签导航 -->
+    <view class="tab-bar">
+      <view 
+        class="tab-item {{activeTab === 'about' ? 'active' : ''}}" 
+        data-tab="about"
+        bindtap="switchTab"
+      >
+        公司介绍
+      </view>
+      <view 
+        class="tab-item {{activeTab === 'history' ? 'active' : ''}}" 
+        data-tab="history"
+        bindtap="switchTab"
+      >
+        发展历程
+      </view>
+      <view 
+        class="tab-item {{activeTab === 'awards' ? 'active' : ''}}" 
+        data-tab="awards"
+        bindtap="switchTab"
+      >
+        荣誉资质
+      </view>
+      <view 
+        class="tab-item {{activeTab === 'contact' ? 'active' : ''}}" 
+        data-tab="contact"
+        bindtap="switchTab"
+      >
+        联系我们
+      </view>
+    </view>
+
+    <!-- 内容区域 -->
+    <scroll-view class="content-scroll" scroll-y>
+      <!-- 公司介绍 -->
+      <view class="content-section" wx:if="{{activeTab === 'about'}}">
+        <view class="company-header">
+          <image class="company-logo" src="{{companyInfo.logo}}" mode="aspectFit"></image>
+          <view class="company-name">{{companyInfo.name}}</view>
+          <view class="company-slogan">{{companyInfo.slogan}}</view>
+        </view>
+
+        <view class="section-card">
+          <view class="section-title">公司简介</view>
+          <view class="section-content">
+            <text class="description-text">{{companyInfo.description}}</text>
+          </view>
+        </view>
+
+        <block wx:for="{{companyInfo.values}}" wx:key="title">
+          <view class="section-card">
+            <view class="section-title">{{item.title}}</view>
+            <view class="section-content">
+              <text class="description-text">{{item.content}}</text>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <!-- 发展历程 -->
+      <view class="content-section" wx:if="{{activeTab === 'history'}}">
+        <view class="timeline">
+          <block wx:for="{{historyList}}" wx:key="year">
+            <view class="timeline-item">
+              <view class="timeline-year">{{item.year}}</view>
+              <view class="timeline-connector">
+                <view class="timeline-dot"></view>
+                <view class="timeline-line" wx:if="{{index !== historyList.length - 1}}"></view>
+              </view>
+              <view class="timeline-content">
+                <view class="timeline-event">{{item.event}}</view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+
+      <!-- 荣誉资质 -->
+      <view class="content-section" wx:if="{{activeTab === 'awards'}}">
+        <view class="awards-list">
+          <block wx:for="{{awardsList}}" wx:key="year">
+            <view class="award-item">
+              <view class="award-year">{{item.year}}</view>
+              <view class="award-info">
+                <view class="award-icon">
+                  <image class="trophy-icon" src="/images/aboutUs/trophy-icon.png" mode="aspectFit"></image>
+                </view>
+                <view class="award-name">{{item.award}}</view>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+
+      <!-- 联系我们 -->
+      <view class="content-section" wx:if="{{activeTab === 'contact'}}">
+        <view class="contact-list">
+          <view class="contact-item">
+            <view class="contact-icon">
+              <image class="icon" src="/images/aboutUs/address-icon.png" mode="aspectFit"></image>
+            </view>
+            <view class="contact-detail">
+              <view class="contact-label">公司地址</view>
+              <view class="contact-value">{{contactInfo.address}}</view>
+            </view>
+          </view>
+
+          <view class="contact-item" bindtap="makePhoneCall">
+            <view class="contact-icon">
+              <image class="icon" src="/images/aboutUs/phone-icon.png" mode="aspectFit"></image>
+            </view>
+            <view class="contact-detail">
+              <view class="contact-label">联系电话</view>
+              <view class="contact-value">{{contactInfo.phone}}</view>
+            </view>
+            <view class="contact-action">拨打</view>
+          </view>
+
+          <view class="contact-item" bindtap="copyEmail">
+            <view class="contact-icon">
+              <image class="icon" src="/images/aboutUs/email-icon.png" mode="aspectFit"></image>
+            </view>
+            <view class="contact-detail">
+              <view class="contact-label">电子邮箱</view>
+              <view class="contact-value">{{contactInfo.email}}</view>
+            </view>
+            <view class="contact-action">复制</view>
+          </view>
+
+          <view class="contact-item" bindtap="copyWebsite">
+            <view class="contact-icon">
+              <image class="icon" src="/images/aboutUs/website-icon.png" mode="aspectFit"></image>
+            </view>
+            <view class="contact-detail">
+              <view class="contact-label">官方网站</view>
+              <view class="contact-value">{{contactInfo.website}}</view>
+            </view>
+            <view class="contact-action">复制</view>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+</view> 

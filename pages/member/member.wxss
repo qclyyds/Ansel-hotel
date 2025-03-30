@@ -1,0 +1,280 @@
+/* pages/member/member.wxss */
+.container {
+  padding: 0 0 40rpx 0;
+  background-color: #f8f8f8;
+  min-height: 100vh;
+}
+
+/* 会员头部 */
+.member-header {
+  padding: 60rpx 30rpx 40rpx;
+  background: linear-gradient(to bottom, var(--primary-color), rgba(157, 130, 82, 0.8));
+  color: #fff;
+  border-bottom-left-radius: 40rpx;
+  border-bottom-right-radius: 40rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+
+.avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255, 255, 255, 0.5);
+  margin-right: 30rpx;
+}
+
+.user-detail {
+  flex: 1;
+}
+
+.name-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.name {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-right: 20rpx;
+}
+
+.level {
+  font-size: 24rpx;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+}
+
+.member-id {
+  font-size: 26rpx;
+  opacity: 0.8;
+}
+
+.copy-text {
+  margin-left: 16rpx;
+  font-size: 24rpx;
+  text-decoration: underline;
+}
+
+.edit-btn {
+  min-width: 100rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 30rpx;
+  padding: 0 20rpx;
+  margin: 0;
+}
+
+.points-card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 16rpx;
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.points-value {
+  font-size: 48rpx;
+  font-weight: bold;
+  margin-right: 20rpx;
+}
+
+.points-label {
+  font-size: 26rpx;
+  opacity: 0.8;
+  flex: 1;
+}
+
+.points-action {
+  font-size: 26rpx;
+  opacity: 0.8;
+}
+
+/* 会员部分 */
+.section {
+  margin: 30rpx 30rpx 0;
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.section-more {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 优惠券 */
+.coupon-container {
+  overflow: hidden;
+  margin: 0 -30rpx;
+}
+
+.coupon-scroll {
+  white-space: nowrap;
+  padding: 10rpx 30rpx 30rpx;
+}
+
+.coupon-item {
+  display: inline-flex;
+  width: 460rpx;
+  height: 160rpx;
+  background: linear-gradient(to right, var(--primary-color), rgba(157, 130, 82, 0.8));
+  border-radius: 16rpx;
+  color: #fff;
+  margin-right: 20rpx;
+  overflow: hidden;
+}
+
+.coupon-left {
+  width: 160rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px dashed rgba(255, 255, 255, 0.3);
+}
+
+.coupon-value {
+  font-size: 44rpx;
+  font-weight: bold;
+}
+
+.coupon-right {
+  flex: 1;
+  padding: 30rpx;
+}
+
+.coupon-name {
+  font-size: 30rpx;
+  font-weight: 500;
+  margin-bottom: 16rpx;
+}
+
+.coupon-expire {
+  font-size: 24rpx;
+  opacity: 0.8;
+}
+
+.coupon-more {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 160rpx;
+  height: 160rpx;
+  background-color: #f5f5f5;
+  border-radius: 16rpx;
+  color: #999;
+}
+
+.more-icon {
+  font-size: 48rpx;
+  line-height: 1;
+  margin-bottom: 10rpx;
+}
+
+.more-text {
+  font-size: 24rpx;
+}
+
+/* 会员权益 */
+.privileges-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30rpx;
+}
+
+.privilege-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.privilege-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 16rpx;
+}
+
+.privilege-name {
+  font-size: 26rpx;
+  color: #666;
+}
+
+/* 菜单列表 */
+.menu-list {
+  margin: 30rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.04);
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+}
+
+.menu-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+
+.menu-name {
+  font-size: 30rpx;
+  color: #333;
+}
+
+.menu-arrow {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 底部 */
+.footer {
+  text-align: center;
+  padding: 40rpx 0;
+}
+
+.version {
+  font-size: 24rpx;
+  color: #999;
+}

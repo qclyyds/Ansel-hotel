@@ -1,0 +1,125 @@
+<!--pages/hotelInfo/hotelInfo.wxml-->
+<view class="container">
+  <!-- 酒店图片轮播 -->
+  <swiper class="hotel-swiper" indicator-dots="true" autoplay="true" interval="4000" duration="500" circular="true">
+    <block wx:for="{{hotelInfo.images}}" wx:key="*this">
+      <swiper-item>
+        <image class="swiper-image" src="{{item}}" mode="aspectFill" bindtap="previewImage" data-src="{{item}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <!-- 酒店名称 -->
+  <view class="hotel-title">
+    <view class="name">{{hotelInfo.name}}</view>
+  </view>
+
+  <!-- 标签导航 -->
+  <view class="tabs">
+    <view class="tab-item {{activeTab === 'intro' ? 'active' : ''}}" bindtap="switchTab" data-tab="intro">酒店简介</view>
+    <view class="tab-item {{activeTab === 'facilities' ? 'active' : ''}}" bindtap="switchTab" data-tab="facilities">设施服务</view>
+    <view class="tab-item {{activeTab === 'location' ? 'active' : ''}}" bindtap="switchTab" data-tab="location">位置交通</view>
+  </view>
+
+  <!-- 酒店简介内容 -->
+  <view class="tab-content" wx:if="{{activeTab === 'intro'}}">
+    <view class="intro-section">
+      <view class="section-title">关于酒店</view>
+      <view class="intro-text">{{hotelInfo.description}}</view>
+    </view>
+
+    <view class="address-card">
+      <view class="address-title">酒店地址</view>
+      <view class="address-content">
+        <view class="address-text">{{hotelInfo.address}}</view>
+        <view class="address-actions">
+          <view class="action-btn" bindtap="copyAddress">
+            <image class="action-icon" src="/images/copy.png" mode="aspectFit"></image>
+            <text>复制</text>
+          </view>
+          <view class="action-btn" bindtap="navigateToHotel">
+            <image class="action-icon" src="/images/location.png" mode="aspectFit"></image>
+            <text>导航</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="contact-card">
+      <view class="contact-title">联系电话</view>
+      <view class="contact-content">
+        <view class="contact-text">{{hotelInfo.phone}}</view>
+        <view class="contact-action" bindtap="callHotel">
+          <image class="action-icon" src="/images/phone.png" mode="aspectFit"></image>
+          <text>拨打</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 设施服务内容 -->
+  <view class="tab-content" wx:if="{{activeTab === 'facilities'}}">
+    <view class="facilities-grid">
+      <view class="facility-item" wx:for="{{facilities}}" wx:key="name">
+        <image class="facility-icon" src="{{item.icon}}" mode="aspectFit"></image>
+        <text class="facility-name">{{item.name}}</text>
+      </view>
+    </view>
+    
+    <view class="dining-promo" bindtap="navigateToDining">
+      <view class="promo-title">特色餐厅</view>
+      <view class="promo-desc">探索我们的星光西餐厅、江南中餐厅和悠蓝酒廊，体验非凡的美食之旅</view>
+      <view class="promo-link">查看详情 ></view>
+    </view>
+    
+    <view class="facilities-note">
+      <view class="note-title">开放时间</view>
+      <view class="note-item">
+        <view class="note-label">前台服务：</view>
+        <view class="note-value">24小时</view>
+      </view>
+      <view class="note-item">
+        <view class="note-label">健身中心：</view>
+        <view class="note-value">06:00 - 22:00</view>
+      </view>
+      <view class="note-item">
+        <view class="note-label">水疗中心：</view>
+        <view class="note-value">10:00 - 22:00</view>
+      </view>
+      <view class="note-item">
+        <view class="note-label">餐厅：</view>
+        <view class="note-value">早餐 06:30 - 10:30，午餐 11:30 - 14:00，晚餐 17:30 - 22:00</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 位置交通内容 -->
+  <view class="tab-content" wx:if="{{activeTab === 'location'}}">
+    <view class="map-container">
+      <map class="map" longitude="{{location.longitude}}" latitude="{{location.latitude}}" scale="16" markers="{{location.markers}}" show-location></map>
+      <view class="map-actions">
+        <view class="map-btn" bindtap="navigateToHotel">导航到酒店</view>
+      </view>
+    </view>
+
+    <view class="transportation-section">
+      <view class="section-title">交通信息</view>
+      <view class="transport-list">
+        <view class="transport-item" wx:for="{{location.transportation}}" wx:key="type">
+          <view class="transport-type">{{item.type}}</view>
+          <view class="transport-info">{{item.info}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="attractions-section">
+      <view class="section-title">周边景点</view>
+      <view class="attractions-list">
+        <view class="attraction-item" wx:for="{{location.attractions}}" wx:key="name">
+          <view class="attraction-name">{{item.name}}</view>
+          <view class="attraction-distance">{{item.distance}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view> 

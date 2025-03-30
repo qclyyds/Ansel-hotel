@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/rooms/rooms",
+    "pages/roomDetail/roomDetail",
+    "pages/booking/booking",
+    "pages/orderInfo/orderInfo",
+    "pages/myOrders/myOrders",
+    "pages/member/member",
+    "pages/about/about",
+    "pages/contact/contact",
+    "pages/aiChat/aiChat",
+    "pages/hotelInfo/hotelInfo",
+    "pages/dining/dining",
+    "pages/feedback/feedback",
+    "pages/aboutUs/aboutUs",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "Ansel Hotel",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#9d8252",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/tabbar/home.png",
+        "selectedIconPath": "images/tabbar/home_selected.png"
+      },
+      {
+        "pagePath": "pages/rooms/rooms",
+        "text": "客房",
+        "iconPath": "images/tabbar/room.png",
+        "selectedIconPath": "images/tabbar/room_selected.png"
+      },
+      {
+        "pagePath": "pages/myOrders/myOrders",
+        "text": "订单",
+        "iconPath": "images/tabbar/order.png",
+        "selectedIconPath": "images/tabbar/order_selected.png"
+      },
+      {
+        "pagePath": "pages/member/member",
+        "text": "我的",
+        "iconPath": "images/tabbar/my.png",
+        "selectedIconPath": "images/tabbar/my_selected.png"
+      },
+      {
+        "pagePath": "pages/about/about",
+        "text": "更多",
+        "iconPath": "images/tabbar/more.png",
+        "selectedIconPath": "images/tabbar/more_selected.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "componentFramework": "glass-easel",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>联系我们 - Ansel酒店</title>
+    <!-- TailwindCSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- 自定义样式 -->
+    <link href="../css/common.css" rel="stylesheet">
+    <style>
+        .map-container {
+            width: 100%;
+            height: 250px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .map-placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #f2f2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 16px;
+            color: #007aff;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 2px;
+        }
+        
+        .contact-value {
+            font-weight: 500;
+        }
+        
+        .transport-item {
+            display: flex;
+            margin-bottom: 16px;
+        }
+        
+        .transport-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+        }
+        
+        .transport-info {
+            flex: 1;
+        }
+        
+        .subway {
+            background-color: #1976d2;
+        }
+        
+        .bus {
+            background-color: #388e3c;
+        }
+        
+        .taxi {
+            background-color: #fbc02d;
+            color: #000;
+        }
+        
+        .airport {
+            background-color: #7b1fa2;
+        }
+    </style>
+</head>
+<body>
+    <!-- iOS状态栏 -->
+    <div class="ios-status-bar">
+        <div class="time">12:30</div>
+        <div class="status-icons">
+            <i class="fas fa-signal"></i>
+            <i class="fas fa-wifi"></i>
+            <i class="fas fa-battery-full"></i>
+        </div>
+    </div>
+    
+    <!-- 导航栏 -->
+    <div class="nav-header">
+        <div class="nav-back" onclick="navigateTo('about.html')"><i class="fas fa-chevron-left"></i></div>
+        <div class="nav-title">联系我们</div>
+    </div>
+    
+    <!-- 页面内容 -->
+    <div class="content">
+        <!-- 地图 -->
+        <div class="map-container">
+            <img src="https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/pin-l+1976d2(116.4551,39.9079)/116.4551,39.9079,14,0/600x400@2x?access_token=pk.example" alt="酒店位置地图" class="map-placeholder">
+            <div class="absolute bottom-3 right-3">
+                <button class="bg-white text-blue-600 px-3 py-2 rounded-full shadow-md text-sm font-medium">
+                    <i class="fas fa-directions mr-1"></i> 导航
+                </button>
+            </div>
+        </div>
+        
+        <!-- 联系信息 -->
+        <div class="card mb-6">
+            <h2 class="font-semibold text-lg mb-4">联系方式</h2>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-label">地址</div>
+                    <div class="contact-value">北京市朝阳区建国门外大街1号</div>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-phone"></i>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-label">电话</div>
+                    <div class="contact-value">+86 10 8888 8888</div>
+                </div>
+                <div class="contact-action">
+                    <button class="text-blue-500"><i class="fas fa-phone"></i></button>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-label">邮箱</div>
+                    <div class="contact-value">info@anselhotel.com</div>
+                </div>
+                <div class="contact-action">
+                    <button class="text-blue-500"><i class="fas fa-envelope"></i></button>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="contact-info">
+                    <div class="contact-label">网站</div>
+                    <div class="contact-value">www.anselhotel.com</div>
+                </div>
+                <div class="contact-action">
+                    <button class="text-blue-500"><i class="fas fa-external-link-alt"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 交通信息 -->
+        <div class="card mb-6">
+            <h2 class="font-semibold text-lg mb-4">交通指南</h2>
+            
+            <div class="transport-item">
+                <div class="transport-icon subway">
+                    <i class="fas fa-subway"></i>
+                </div>
+                <div class="transport-info">
+                    <div class="font-medium mb-1">地铁</div>
+                    <div class="text-sm text-gray-600">乘坐1号线或2号线至建国门站，从A出口出站，步行约300米即可到达。</div>
+                </div>
+            </div>
+            
+            <div class="transport-item">
+                <div class="transport-icon bus">
+                    <i class="fas fa-bus"></i>
+                </div>
+                <div class="transport-info">
+                    <div class="font-medium mb-1">公交</div>
+                    <div class="text-sm text-gray-600">乘坐1路、4路、52路至建国门外站下车，步行约200米即可到达。</div>
+                </div>
+            </div>
+            
+            <div class="transport-item">
+                <div class="transport-icon taxi">
+                    <i class="fas fa-taxi"></i>
+                </div>
+                <div class="transport-info">
+                    <div class="font-medium mb-1">出租车</div>
+                    <div class="text-sm text-gray-600">从北京首都国际机场出发，行驶约25公里，大约需要40分钟。</div>
+                </div>
+            </div>
+            
+            <div class="transport-item">
+                <div class="transport-icon airport">
+                    <i class="fas fa-plane"></i>
+                </div>
+                <div class="transport-info">
+                    <div class="font-medium mb-1">机场快线</div>
+                    <div class="text-sm text-gray-600">乘坐机场快线至东直门站，转乘地铁2号线至建国门站。</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 客服 -->
+        <div class="card mb-6">
+            <h2 class="font-semibold text-lg mb-4">在线客服</h2>
+            <div class="flex justify-center space-x-6">
+                <div class="text-center">
+                    <div class="w-12 h-12 mx-auto mb-2 bg-green-100 rounded-full flex items-center justify-center">
+                        <i class="fab fa-weixin text-green-600 text-xl"></i>
+                    </div>
+                    <div class="text-sm">微信客服</div>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 mx-auto mb-2 bg-blue-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-headset text-blue-600 text-xl"></i>
+                    </div>
+                    <div class="text-sm">在线客服</div>
+                </div>
+                <div class="text-center">
+                    <div class="w-12 h-12 mx-auto mb-2 bg-red-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-phone-alt text-red-600 text-xl"></i>
+                    </div>
+                    <div class="text-sm">电话客服</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 联系表单 -->
+        <div class="card">
+            <h2 class="font-semibold text-lg mb-4">留言咨询</h2>
+            <div class="input-group">
+                <label class="input-label">姓名</label>
+                <input type="text" class="text-input" placeholder="请输入您的姓名">
+            </div>
+            <div class="input-group">
+                <label class="input-label">联系方式</label>
+                <input type="tel" class="text-input" placeholder="请输入您的电话或邮箱">
+            </div>
+            <div class="input-group">
+                <label class="input-label">留言内容</label>
+                <textarea class="text-input" rows="4" placeholder="请输入您的咨询或建议"></textarea>
+            </div>
+            <button class="btn-primary mt-4">提交留言</button>
+        </div>
+    </div>
+    
+    <!-- 底部导航栏 -->
+    <div class="tab-bar">
+        <div class="tab-item" id="tab-home" onclick="navigateTo('home.html')">
+            <div class="tab-icon"><i class="fas fa-home"></i></div>
+            <div>首页</div>
+        </div>
+        <div class="tab-item" id="tab-rooms" onclick="navigateTo('rooms.html')">
+            <div class="tab-icon"><i class="fas fa-bed"></i></div>
+            <div>房间</div>
+        </div>
+        <div class="tab-item" id="tab-orders" onclick="navigateTo('my-orders.html')">
+            <div class="tab-icon"><i class="fas fa-receipt"></i></div>
+            <div>订单</div>
+        </div>
+        <div class="tab-item" id="tab-member" onclick="navigateTo('member.html')">
+            <div class="tab-icon"><i class="fas fa-user"></i></div>
+            <div>会员</div>
+        </div>
+        <div class="tab-item active" id="tab-more" onclick="navigateTo('about.html')">
+            <div class="tab-icon"><i class="fas fa-ellipsis-h"></i></div>
+            <div>更多</div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="../js/common.js"></script>
+</body>
+</html> 

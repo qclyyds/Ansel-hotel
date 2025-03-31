@@ -13,13 +13,27 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  border-bottom: 1rpx solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.hotel-logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo-icon {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 12rpx;
 }
 
 .hotel-name {
   font-size: 36rpx;
   font-weight: bold;
-  letter-spacing: 2rpx;
+  letter-spacing: 3rpx;
+  background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .header-icon {
@@ -28,45 +42,69 @@
 }
 
 /* 轮播图 */
+.banner-container {
+  position: relative;
+  height: 560rpx;
+  overflow: hidden;
+}
+
 .banner {
   width: 100%;
-  height: 480rpx;
-  position: relative;
+  height: 100%;
 }
 
 .banner-image {
   width: 100%;
   height: 100%;
+  transform: scale(1.05);
+  transition: transform 8s ease;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(30, 58, 138, 0.7) 0%, rgba(30, 58, 138, 0.3) 50%, rgba(30, 58, 138, 0.1) 100%);
+  z-index: 1;
 }
 
 .banner-text {
   position: absolute;
-  bottom: 60rpx;
-  left: 40rpx;
+  bottom: 80rpx;
+  left: 60rpx;
   color: #fff;
-  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.3);
+  z-index: 2;
 }
 
 .banner-title {
-  font-size: 46rpx;
+  font-size: 52rpx;
   font-weight: bold;
-  margin-bottom: 10rpx;
+  margin-bottom: 16rpx;
+  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.4);
+  letter-spacing: 2rpx;
 }
 
 .banner-subtitle {
-  font-size: 32rpx;
+  font-size: 34rpx;
+  margin-bottom: 24rpx;
+  font-weight: 300;
+  letter-spacing: 1rpx;
+}
+
+.banner-line {
+  width: 60rpx;
+  height: 4rpx;
+  background-color: var(--secondary-color);
 }
 
 /* 预订区域 */
 .booking-section {
-  margin: 30rpx;
+  margin: -40rpx 30rpx 30rpx;
   padding: 40rpx;
-}
-
-.section-title {
-  font-size: 32rpx;
-  font-weight: bold;
-  margin-bottom: 30rpx;
+  position: relative;
+  z-index: 10;
 }
 
 .date-section {
@@ -81,8 +119,8 @@
 
 .date-label {
   font-size: 26rpx;
-  color: #999;
-  margin-bottom: 8rpx;
+  color: var(--text-color-lighter);
+  margin-bottom: 12rpx;
 }
 
 .date-value {
@@ -90,9 +128,39 @@
   font-weight: 500;
 }
 
-.date-arrow {
-  margin: 0 20rpx;
-  color: #999;
+.date-icon, .guest-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+  opacity: 0.7;
+}
+
+.date-separator {
+  width: 60rpx;
+  height: 2rpx;
+  background-color: var(--border-color);
+  margin: 0 30rpx;
+  position: relative;
+}
+
+.date-separator::before,
+.date-separator::after {
+  content: '';
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background-color: var(--secondary-color);
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.date-separator::before {
+  left: 0;
+}
+
+.date-separator::after {
+  right: 0;
 }
 
 .guest-section {
@@ -101,21 +169,24 @@
 
 .guest-label {
   font-size: 26rpx;
-  color: #999;
-  margin-bottom: 8rpx;
+  color: var(--text-color-lighter);
+  margin-bottom: 12rpx;
 }
 
 .guest-value {
   font-size: 30rpx;
   font-weight: 500;
-  display: flex;
   justify-content: space-between;
-  align-items: center;
 }
 
 .selector-icon {
   font-size: 24rpx;
-  color: #999;
+  color: var(--text-color-lighter);
+}
+
+.selector-icon image {
+  width: 24rpx;
+  height: 24rpx;
 }
 
 .promotion-code {
@@ -123,79 +194,250 @@
   align-items: center;
   margin-bottom: 30rpx;
   font-size: 26rpx;
+  color: var(--text-color-light);
+}
+
+.promotion-code text {
+  margin-left: 10rpx;
 }
 
 .search-btn {
   width: 100%;
+  letter-spacing: 2rpx;
+  font-weight: 600;
+  height: 80rpx;
+  line-height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* 房型推荐 */
 .section {
-  margin: 40rpx 0;
+  margin: 60rpx 0;
   padding: 0 30rpx;
 }
 
 .section-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20rpx;
+  align-items: flex-start;
+  margin-bottom: 30rpx;
+}
+
+.section-title-container {
+  position: relative;
+}
+
+.section-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 12rpx;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  bottom: -8rpx;
+  left: 0;
+  width: 30rpx;
+  height: 4rpx;
+  background-color: var(--secondary-color);
+}
+
+.section-subtitle {
+  font-size: 24rpx;
+  color: var(--text-color-lighter);
+  margin-top: 4rpx;
 }
 
 .view-all {
-  font-size: 26rpx;
+  font-size: 28rpx;
   color: var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
+  padding-bottom: 4rpx;
 }
 
 .room-scroll {
+  margin: 30rpx -30rpx 0;
+  padding: 20rpx 30rpx;
+  overflow: visible;
   white-space: nowrap;
-  margin: 0 -30rpx;
-  padding: 0 30rpx;
 }
 
+/* 确保房型卡片在滚动视图中正确显示 */
+.room-scroll .room-card {
+  display: inline-block;
+  vertical-align: top;
+  white-space: normal;
+}
+
+/* 新的房型卡片样式 */
 .room-card {
   display: inline-block;
-  width: 580rpx;
-  margin-right: 20rpx;
-  border-radius: 16rpx;
+  width: 100%;
+  max-width: 660rpx;
+  margin-right: 30rpx;
+  border-radius: 20rpx;
   overflow: hidden;
   background: #fff;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.room-image-container {
+  position: relative;
+  width: 100%;
+  height: 360rpx;
+  overflow: hidden;
 }
 
 .room-image {
-  width: 580rpx;
-  height: 320rpx;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s ease;
+}
+
+.room-card:active .room-image {
+  transform: scale(1.03);
+}
+
+.room-badge {
+  position: absolute;
+  top: 20rpx;
+  left: 20rpx;
+  background: linear-gradient(135deg, var(--secondary-color), #e7c860);
+  color: #333;
+  font-size: 24rpx;
+  padding: 8rpx 24rpx;
+  border-radius: 6rpx;
+  box-shadow: 0 4rpx 8rpx rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.save-btn {
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  width: 70rpx;
+  height: 70rpx;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.heart-icon {
+  width: 36rpx;
+  height: 36rpx;
 }
 
 .room-info {
-  padding: 20rpx;
+  padding: 30rpx;
+}
+
+.room-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
 }
 
 .room-name {
-  font-size: 32rpx;
+  font-size: 34rpx;
   font-weight: bold;
-  margin-bottom: 10rpx;
+  color: var(--primary-color);
+  flex: 1;
+  line-height: 1.3;
+  margin-right: 20rpx;
 }
 
-.room-brief {
-  font-size: 24rpx;
-  color: #666;
-  margin-bottom: 10rpx;
+.room-rating {
+  display: flex;
+  align-items: center;
+  background-color: var(--secondary-light);
+  padding: 6rpx 16rpx;
+  border-radius: 20rpx;
+  flex-shrink: 0;
+}
+
+.rating-value {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: var(--secondary-color);
+  margin-right: 6rpx;
+}
+
+.star-icon {
+  width: 24rpx;
+  height: 24rpx;
+}
+
+.room-detail {
+  font-size: 28rpx;
+  color: var(--text-color);
+  margin-bottom: 20rpx;
+  line-height: 1.5;
+}
+
+.room-divider {
+  margin: 10rpx 0 24rpx;
+  height: 1rpx;
+  background: #f0f0f0;
+}
+
+.room-price-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .room-price {
-  font-size: 32rpx;
+  display: flex;
+  align-items: baseline;
+}
+
+.price-value {
+  font-size: 40rpx;
   font-weight: bold;
-  color: var(--primary-color);
+  color: var(--secondary-color);
 }
 
 .price-unit {
   font-size: 24rpx;
-  font-weight: normal;
+  color: var(--text-color-lighter);
+  margin-left: 6rpx;
+}
+
+.book-btn {
+  background: var(--primary-gradient);
+  color: #fff;
+  padding: 16rpx 40rpx;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  box-shadow: 0 6rpx 16rpx rgba(30, 58, 138, 0.3);
+  transition: all 0.3s;
+}
+
+.book-btn:active {
+  transform: translateY(2rpx);
+  box-shadow: 0 4rpx 8rpx rgba(30, 58, 138, 0.2);
 }
 
 /* 酒店服务 */
+.services-section {
+  background-color: #f1f0ec;
+  padding: 60rpx 30rpx;
+  margin: 60rpx 0;
+}
+
 .services-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -208,80 +450,180 @@
   align-items: center;
   background-color: #fff;
   border-radius: 16rpx;
-  padding: 20rpx;
-  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.05);
+  padding: 30rpx 20rpx;
+  box-shadow: 0 8rpx 20rpx var(--shadow-color);
+  transition: all 0.3s ease;
 }
 
-.service-icon {
+.service-item:active {
+  transform: translateY(-6rpx);
+  box-shadow: 0 12rpx 30rpx rgba(0, 0, 0, 0.12);
+}
+
+.service-icon-container {
   width: 80rpx;
   height: 80rpx;
-  margin-bottom: 16rpx;
+  margin-bottom: 20rpx;
+  background: rgba(30, 58, 138, 0.05);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4rpx 10rpx rgba(0, 0, 0, 0.05);
 }
 
 .service-name {
   font-size: 26rpx;
   text-align: center;
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+/* 会员特权 */
+.privileges-section {
+  background-color: #fff;
+  padding: 20rpx 30rpx 60rpx;
+  margin: 0;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.05);
+}
+
+.privileges-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24rpx;
+  margin-top: 30rpx;
+}
+
+.privilege-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f8f8f8;
+  border-radius: 16rpx;
+  padding: 24rpx 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.03);
+  transition: all 0.3s ease;
+}
+
+.privilege-item:active {
+  transform: translateY(-4rpx);
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.privilege-icon-container {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 16rpx;
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(212, 175, 55, 0.2));
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4rpx 8rpx rgba(212, 175, 55, 0.15);
+}
+
+.privilege-name {
+  font-size: 24rpx;
+  text-align: center;
+  color: var(--text-color);
+  font-weight: 500;
 }
 
 /* 关于酒店 */
 .about-section {
-  margin: 40rpx 30rpx;
+  margin: 60rpx 30rpx;
   position: relative;
   border-radius: 16rpx;
   overflow: hidden;
-  height: 400rpx;
+  height: 450rpx;
+  box-shadow: 0 16rpx 40rpx rgba(0, 0, 0, 0.15);
 }
 
 .about-image {
   width: 100%;
   height: 100%;
-  filter: brightness(0.7);
+  object-fit: cover;
+  transition: transform 10s ease;
+}
+
+.about-section:hover .about-image {
+  transform: scale(1.1);
+}
+
+.about-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(30, 58, 138, 0.8) 0%, rgba(30, 58, 138, 0.4) 60%, rgba(30, 58, 138, 0.2) 100%);
 }
 
 .about-content {
   position: absolute;
   bottom: 40rpx;
   left: 40rpx;
+  right: 40rpx;
   color: #fff;
+  z-index: 2;
 }
 
 .about-title {
-  font-size: 36rpx;
+  font-size: 38rpx;
   font-weight: bold;
-  margin-bottom: 16rpx;
+  margin-bottom: 20rpx;
+  letter-spacing: 2rpx;
+}
+
+.about-line {
+  width: 40rpx;
+  height: 4rpx;
+  background-color: var(--secondary-color);
+  margin-bottom: 20rpx;
 }
 
 .about-desc {
   font-size: 28rpx;
+  line-height: 1.6;
   margin-bottom: 30rpx;
-  max-width: 80%;
+  opacity: 0.9;
 }
 
 .about-btn {
   display: inline-block;
   padding: 12rpx 40rpx;
-  background-color: var(--primary-color);
-  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.6);
   border-radius: 30rpx;
-  font-size: 26rpx;
+  font-size: 28rpx;
+  transition: all 0.3s ease;
+}
+
+.about-btn:active {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /* 底部客服 */
 .customer-service {
   position: fixed;
-  right: 40rpx;
-  bottom: 40rpx;
-  width: 100rpx;
-  height: 100rpx;
-  background-color: var(--primary-color);
-  border-radius: 50%;
+  right: 30rpx;
+  bottom: 140rpx;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  box-shadow: 0 4rpx 20rpx rgba(157, 130, 82, 0.3);
+  z-index: 90;
 }
 
 .cs-icon {
-  width: 50rpx;
-  height: 50rpx;
+  width: 80rpx;
+  height: 80rpx;
+  background: var(--primary-gradient);
+  border-radius: 50%;
+  box-shadow: 0 6rpx 16rpx rgba(30, 58, 138, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cs-text {
+  display: none;
 }

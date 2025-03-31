@@ -1,85 +1,148 @@
 <!--index.wxml-->
-<view class="container">
+<view class="container page-transition">
   <!-- 顶部导航栏 -->
   <view class="header">
-    <view class="hotel-name">ANSEL HOTEL</view>
+    <view class="hotel-logo">
+      <image class="logo-icon" src="/images/logo-icon.png" mode="aspectFit"></image>
+      <view class="hotel-name">ANSEL HOTEL</view>
+    </view>
     <view class="header-right">
       <image class="header-icon" src="/images/notification.png" mode="aspectFit"></image>
     </view>
   </view>
 
   <!-- 轮播图 -->
-  <swiper class="banner" indicator-dots="{{true}}" autoplay="{{true}}" interval="{{5000}}" circular="{{true}}">
-    <swiper-item wx:for="{{banners}}" wx:key="id">
-      <image src="{{item.image}}" mode="aspectFill" class="banner-image"></image>
-      <view class="banner-text">
-        <view class="banner-title">{{item.title}}</view>
-        <view class="banner-subtitle">{{item.subtitle}}</view>
-      </view>
-    </swiper-item>
-  </swiper>
+  <view class="banner-container">
+    <swiper class="banner" indicator-dots="{{true}}" indicator-color="rgba(255,255,255,0.4)" indicator-active-color="var(--primary-color)" autoplay="{{true}}" interval="{{5000}}" circular="{{true}}">
+      <swiper-item wx:for="{{banners}}" wx:key="id">
+        <image src="{{item.image}}" mode="aspectFill" class="banner-image"></image>
+        <view class="banner-overlay"></view>
+        <view class="banner-text">
+          <view class="banner-title">{{item.title}}</view>
+          <view class="banner-subtitle">{{item.subtitle}}</view>
+          <view class="banner-line"></view>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
 
   <!-- 预订区域 -->
   <view class="booking-section card">
-    <view class="section-title">预订您的住宿</view>
+    <view class="section-title">预订您的尊享体验</view>
     <view class="date-section">
       <view class="date-box">
         <view class="date-label">入住日期</view>
         <picker mode="date" value="{{checkInDate}}" start="2023-01-01" end="2030-12-31" bindchange="bindCheckInDateChange">
-          <view class="date-value">{{checkInDate}}</view>
+          <view class="date-value flex-row align-center">
+            <image class="date-icon" src="/images/calendar.png" mode="aspectFit"></image>
+            <text>{{checkInDate}}</text>
+          </view>
         </picker>
       </view>
-      <view class="date-arrow">→</view>
+      <view class="date-separator"></view>
       <view class="date-box">
         <view class="date-label">离店日期</view>
         <picker mode="date" value="{{checkOutDate}}" start="2023-01-01" end="2030-12-31" bindchange="bindCheckOutDateChange">
-          <view class="date-value">{{checkOutDate}}</view>
+          <view class="date-value flex-row align-center">
+            <image class="date-icon" src="/images/calendar.png" mode="aspectFit"></image>
+            <text>{{checkOutDate}}</text>
+          </view>
         </picker>
       </view>
     </view>
+    <view class="divider"></view>
     <view class="guest-section">
       <view class="guest-label">入住人数、房间</view>
       <picker mode="selector" range="{{guestOptions}}" value="{{guestIndex}}" bindchange="bindGuestChange">
-        <view class="guest-value">
-          {{guestOptions[guestIndex]}}
-          <view class="selector-icon">▼</view>
+        <view class="guest-value flex-row align-center">
+          <image class="guest-icon" src="/images/user.png" mode="aspectFit"></image>
+          <text>{{guestOptions[guestIndex]}}</text>
+          <view class="selector-icon">
+            <image src="/images/arrow-down.png" mode="aspectFit"></image>
+          </view>
         </view>
       </picker>
     </view>
     <view class="promotion-code">
-      <checkbox value="promotion" checked="{{usePromotion}}" bindtap="togglePromotion" />
-      <text>使用促销码</text>
+      <checkbox value="promotion" checked="{{usePromotion}}" color="var(--primary-color)" bindtap="togglePromotion" />
+      <text>使用会员优惠码</text>
     </view>
-    <button class="search-btn primary-btn" bindtap="searchRooms">查询可预订房间</button>
+    <button class="search-btn primary-btn" bindtap="searchRooms" style="text-align: center;">立即查询</button>
   </view>
 
   <!-- 房型推荐 -->
   <view class="section">
     <view class="section-header">
-      <view class="section-title">特色房型</view>
-      <view class="view-all" bindtap="navigateToRooms">查看全部</view>
+      <view class="section-title-container">
+        <view class="section-title">尊享房型</view>
+        <view class="section-subtitle">奢华舒适体验，尽在安泽</view>
+      </view>
+      <view class="view-all" id="view-rooms-btn" data-target="rooms" bindtap="handleViewAllClick">查看全部</view>
     </view>
-    <scroll-view scroll-x="true" class="room-scroll">
+    <scroll-view scroll-x="true" class="room-scroll" enhanced="true" show-scrollbar="false">
       <view class="room-card" wx:for="{{featuredRooms}}" wx:key="id" bindtap="navigateToRoomDetail" data-id="{{item.id}}">
-        <image class="room-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="room-image-container">
+          <image class="room-image" src="{{item.image}}" mode="aspectFill"></image>
+          <view class="room-badge" wx:if="{{item.tag}}">{{item.tag}}</view>
+          <view class="save-btn">
+            <image class="heart-icon" src="/images/heart.png" mode="aspectFit"></image>
+          </view>
+        </view>
         <view class="room-info">
-          <view class="room-name">{{item.name}}</view>
-          <view class="room-brief">{{item.size}} · {{item.bedType}} · {{item.view}}</view>
-          <view class="room-price">¥{{item.price}}<text class="price-unit">/晚</text></view>
+          <view class="room-header">
+            <view class="room-name">{{item.name}}</view>
+            <view class="room-rating" wx:if="{{item.rating}}">
+              <text class="rating-value">{{item.rating || 4.9}}</text>
+              <image class="star-icon" src="/images/star.png" mode="aspectFit"></image>
+            </view>
+          </view>
+          <view class="room-detail">{{item.size}} · {{item.bedType}} · {{item.view}}</view>
+          <view class="divider room-divider"></view>
+          <view class="room-price-section">
+            <view class="room-price">
+              <text class="price-value">¥{{item.price}}</text>
+              <text class="price-unit">/晚</text>
+            </view>
+            <view class="book-btn">预订</view>
+          </view>
         </view>
       </view>
     </scroll-view>
   </view>
 
   <!-- 酒店服务 -->
-  <view class="section">
+  <view class="section services-section">
     <view class="section-header">
-      <view class="section-title">尊享服务</view>
+      <view class="section-title-container">
+        <view class="section-title">尊享服务</view>
+        <view class="section-subtitle">体验安泽酒店尊贵服务</view>
+      </view>
     </view>
     <view class="services-grid">
-      <view class="service-item" wx:for="{{services}}" wx:key="id">
-        <image class="service-icon" src="{{item.icon}}"></image>
+      <view class="service-item" wx:for="{{services}}" wx:key="id" bindtap="navigateToService" data-id="{{item.id}}">
+        <view class="service-icon-container">
+          <van-icon name="{{item.icon}}" size="48rpx" color="var(--primary-color)" />
+        </view>
         <view class="service-name">{{item.name}}</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 会员特权 -->
+  <view class="section privileges-section">
+    <view class="section-header">
+      <view class="section-title-container">
+        <view class="section-title">会员特权</view>
+        <view class="section-subtitle">专属会员尊享服务</view>
+      </view>
+      <view class="view-all" id="view-member-btn" data-target="member" bindtap="handleViewAllClick">查看详情 ></view>
+    </view>
+    <view class="privileges-grid">
+      <view class="privilege-item" wx:for="{{memberPrivileges}}" wx:key="id" bindtap="navigateToMemberDetail" data-id="{{item.id}}">
+        <view class="privilege-icon-container">
+          <van-icon name="{{item.icon}}" size="48rpx" color="var(--secondary-color)" />
+        </view>
+        <view class="privilege-name">{{item.name}}</view>
       </view>
     </view>
   </view>
@@ -87,15 +150,19 @@
   <!-- 关于酒店 -->
   <view class="about-section">
     <image class="about-image" src="/images/hotel-about.jpg" mode="aspectFill"></image>
+    <view class="about-overlay"></view>
     <view class="about-content">
-      <view class="about-title">关于Ansel酒店</view>
-      <view class="about-desc">Ansel酒店位于城市中心，提供奢华体验，拥有一流的设施与服务，是您商务和休闲的理想选择。</view>
-      <view class="about-btn" bindtap="navigateToAbout">了解更多</view>
+      <view class="about-title">关于Ansel安泽酒店</view>
+      <view class="about-line"></view>
+      <view class="about-desc">Ansel安泽酒店位于城市中心，提供奢华体验，拥有一流的设施与服务，是您商务和休闲的理想选择。</view>
+      <view class="about-btn" id="view-about-btn" data-target="about" bindtap="handleViewAllClick">了解更多</view>
     </view>
   </view>
 
   <!-- 底部客服 -->
-  <view class="customer-service" bindtap="navigateToAiChat">
-    <image class="cs-icon" src="/images/customer-service.png" mode="aspectFit"></image>
+  <view class="customer-service" bindtap="navigateToAiChat" style="position: fixed; left: 642rpx; top: 1195rpx; height: 100rpx; display: flex; box-sizing: border-box">
+    <view class="cs-icon">
+      <van-icon name="service-o" size="48rpx" color="#ffffff" />
+    </view>
   </view>
 </view>

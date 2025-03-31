@@ -6,12 +6,12 @@ Page({
    */
   data: {
     menuList: [
-      { id: 'hotelInfo', icon: '/images/about/hotel-info.png', name: '酒店介绍', url: '/pages/hotelInfo/hotelInfo' },
-      { id: 'dining', icon: '/images/about/dining.png', name: '餐饮美食', url: '/pages/dining/dining' },
-      { id: 'contact', icon: '/images/about/contact.png', name: '联系我们', url: '/pages/contact/contact' },
-      { id: 'service', icon: '/images/about/service.png', name: '智能客服', url: '/pages/aiChat/aiChat' },
-      { id: 'feedback', icon: '/images/about/feedback.png', name: '意见反馈', url: '/pages/feedback/feedback' },
-      { id: 'about', icon: '/images/about/about-us.png', name: '关于我们', url: '/pages/aboutUs/aboutUs' }
+      { id: 'hotelInfo', icon: '/images/about/hotel-info.png', name: '酒店介绍', url: '/packageInfo/hotelInfo/hotelInfo' },
+      { id: 'dining', icon: '/images/about/dining.png', name: '餐饮美食', url: '/packageService/dining/dining' },
+      { id: 'contact', icon: '/images/about/contact.png', name: '联系我们', url: '/packageInfo/contact/contact' },
+      { id: 'service', icon: '/images/about/service.png', name: '智能客服', url: '/packageService/aiChat/aiChat' },
+      { id: 'feedback', icon: '/images/about/feedback.png', name: '意见反馈', url: '/packageService/feedback/feedback' },
+      { id: 'about', icon: '/images/about/about-us.png', name: '关于我们', url: '/packageInfo/aboutUs/aboutUs' }
     ]
   },
 
@@ -33,7 +33,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    // 初始化自定义tabBar
+    const app = getApp();
+    if (app.initTabBar) {
+      app.initTabBar();
+    }
   },
 
   /**

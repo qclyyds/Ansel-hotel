@@ -15,5 +15,12 @@ App({
   },
   globalData: {
     userInfo: null
+  },
+  
+  // 提供一个全局方法用于初始化自定义tabBar
+  initTabBar() {
+    if (typeof this.getTabBar === 'function' && this.getTabBar()) {
+      this.getTabBar().init();
+    }
   }
 })

@@ -1,38 +1,49 @@
 <!--pages/member/member.wxml-->
-<view class="container">
+<view class="container page-transition">
   <!-- 会员头部信息 -->
   <view class="member-header">
+    <view class="bg-decoration"></view>
     <view class="user-info">
-      <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+      <view class="avatar-container">
+        <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+        <view class="level-badge">{{userInfo.level}}</view>
+      </view>
       <view class="user-detail">
         <view class="name-container">
           <view class="name">{{userInfo.nickName}}</view>
-          <view class="level">{{userInfo.level}}</view>
         </view>
-        <view class="member-id" bindtap="copyMemberId">
+        <view class="member-id">
           会员ID: {{userInfo.memberId}}
-          <text class="copy-text">复制</text>
         </view>
       </view>
-      <button class="edit-btn" bindtap="getUserProfile">编辑</button>
+      <view class="user-actions">
+        <button class="edit-btn" bindtap="getUserProfile">编辑</button>
+        <view class="copy-btn" bindtap="copyMemberId">复制ID</view>
+      </view>
     </view>
     
     <view class="points-card">
-      <view class="points-value">{{userInfo.points}}</view>
-      <view class="points-label">我的积分</view>
-      <view class="points-action" bindtap="navigateToPoints">积分明细 ></view>
+      <view class="points-section">
+        <view class="points-value">{{userInfo.points}}</view>
+        <view class="points-label">我的积分</view>
+      </view>
+      <view class="points-divider"></view>
+      <view class="points-action" bindtap="navigateToPoints">积分明细 <text class="arrow">></text></view>
     </view>
   </view>
 
   <!-- 会员优惠券 -->
   <view class="section">
     <view class="section-header">
-      <view class="section-title">我的优惠券</view>
-      <view class="section-more" bindtap="navigateToCoupons">查看全部 ></view>
+      <view class="section-title-container">
+        <view class="section-title">我的优惠券</view>
+        <view class="section-subtitle">尊享会员专属优惠</view>
+      </view>
+      <view class="section-more" bindtap="navigateToCoupons">查看全部 <text class="arrow">></text></view>
     </view>
     
     <view class="coupon-container">
-      <scroll-view class="coupon-scroll" scroll-x="true">
+      <scroll-view class="coupon-scroll" scroll-x="true" enhanced="true" show-scrollbar="false">
         <view class="coupon-item" wx:for="{{coupons}}" wx:key="id">
           <view class="coupon-left">
             <view class="coupon-value">¥{{item.value}}</view>
@@ -40,7 +51,9 @@
           <view class="coupon-right">
             <view class="coupon-name">{{item.name}}</view>
             <view class="coupon-expire">有效期至: {{item.expire}}</view>
+            <view class="coupon-use">立即使用</view>
           </view>
+          <view class="coupon-decoration"></view>
         </view>
         <view class="coupon-more" bindtap="navigateToCoupons">
           <view class="more-icon">+</view>
@@ -53,13 +66,18 @@
   <!-- 会员权益 -->
   <view class="section">
     <view class="section-header">
-      <view class="section-title">会员特权</view>
-      <view class="section-more" bindtap="navigateToPrivileges">查看详情 ></view>
+      <view class="section-title-container">
+        <view class="section-title">会员特权</view>
+        <view class="section-subtitle">专属会员尊享服务</view>
+      </view>
+      <view class="section-more" bindtap="navigateToPrivileges">查看详情 <text class="arrow">></text></view>
     </view>
     
     <view class="privileges-grid">
-      <view class="privilege-item" wx:for="{{memberPrivileges}}" wx:key="name">
-        <image class="privilege-icon" src="{{item.icon}}" mode="aspectFit"></image>
+      <view class="privilege-item" wx:for="{{memberPrivileges}}" wx:key="name" bindtap="navigateToPrivilege" data-name="{{item.name}}">
+        <view class="privilege-icon-container">
+          <van-icon name="{{item.icon}}" size="48rpx" color="var(--secondary-color)" />
+        </view>
         <view class="privilege-name">{{item.name}}</view>
       </view>
     </view>
@@ -72,12 +90,18 @@
         <image class="menu-icon" src="{{item.icon}}" mode="aspectFit"></image>
         <view class="menu-name">{{item.name}}</view>
       </view>
-      <view class="menu-arrow">></view>
+      <view class="menu-right">
+        <view class="menu-badge" wx:if="{{item.badge}}">{{item.badge}}</view>
+        <view class="menu-arrow">
+          <image src="/images/arrow-right.png" mode="aspectFit"></image>
+        </view>
+      </view>
     </view>
   </view>
 
   <!-- 底部版本信息 -->
   <view class="footer">
-    <view class="version">ANSEL酒店 v1.0.0</view>
+    <image class="footer-logo" src="/images/logo-small.png" mode="aspectFit"></image>
+    <view class="version">ANSEL安泽酒店 v1.0.0</view>
   </view>
 </view>

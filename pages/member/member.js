@@ -14,12 +14,12 @@ Page({
       points: 12560
     },
     memberPrivileges: [
-      { icon: '/images/member/breakfast.png', name: '免费早餐' },
-      { icon: '/images/member/upgrade.png', name: '优先升级' },
-      { icon: '/images/member/checkin.png', name: '优先入住' },
-      { icon: '/images/member/gift.png', name: '生日礼遇' },
-      { icon: '/images/member/discount.png', name: '会员折扣' },
-      { icon: '/images/member/lounge.png', name: '行政酒廊' }
+      { icon: 'coffee-o', name: '免费早餐' },
+      { icon: 'upgrade', name: '优先升级' },
+      { icon: 'medal-o', name: '优先入住' },
+      { icon: 'gift-o', name: '生日礼遇' },
+      { icon: 'coupon-o', name: '会员折扣' },
+      { icon: 'gem-o', name: '行政酒廊' }
     ],
     coupons: [
       { id: 1, name: '生日特惠券', value: 500, expire: '2023-12-31' },
@@ -53,7 +53,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    // 初始化自定义tabBar
+    const app = getApp();
+    if (app.initTabBar) {
+      app.initTabBar();
+    }
   },
 
   /**

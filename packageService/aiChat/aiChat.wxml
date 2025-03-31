@@ -1,0 +1,66 @@
+<!--pages/aiChat/aiChat.wxml-->
+<view class="container chat-container">
+  <!-- 聊天消息列表 -->
+  <scroll-view class="chat-list" scroll-y="true" scroll-into-view="{{scrollToMessage}}" scroll-with-animation="true">
+    <view class="chat-list-inner">
+      <!-- 欢迎消息 -->
+      <view class="welcome-message" wx:if="{{messages.length === 0}}">
+        <view class="welcome-title">欢迎使用安泽酒店智能客服</view>
+        <view class="welcome-desc">我能回答您关于酒店设施、预订、服务等问题</view>
+      </view>
+      
+      <block wx:for="{{messages}}" wx:key="id">
+        <view class="message-item {{item.type === 'user' ? 'user-message' : 'ai-message'}}" id="msg-{{item.id}}">
+          <view class="message-avatar {{item.type === 'user' ? 'user-avatar' : 'ai-avatar'}}">
+            <van-icon wx:if="{{item.type === 'ai'}}" name="service-o" size="40rpx" color="#ffffff" />
+            <van-icon wx:else name="manager-o" size="40rpx" color="#ffffff" />
+          </view>
+          <view class="message-content">
+            <view class="message-text">{{item.content}}</view>
+            <view class="message-time">{{item.time}}</view>
+          </view>
+        </view>
+      </block>
+      
+      <!-- 加载中提示 -->
+      <view class="loading-indicator" wx:if="{{loading}}">
+        <view class="loading-dot"></view>
+        <view class="loading-dot"></view>
+        <view class="loading-dot"></view>
+      </view>
+    </view>
+  </scroll-view>
+  
+  <!-- 快捷问题列表 -->
+  <view class="quick-questions" wx:if="{{messages.length < 2}}">
+    <view class="section-title">快速提问</view>
+    <view class="question-list">
+      <view class="question-item" wx:for="{{quickQuestions}}" wx:key="*this" bindtap="askQuickQuestion" data-question="{{item}}">
+        <view class="question-text">{{item}}</view>
+        <view class="question-icon">〉</view>
+      </view>
+    </view>
+  </view>
+  
+  <!-- 底部输入区域 -->
+  <view class="input-area">
+    <view class="input-wrapper">
+      <input class="message-input" type="text" placeholder="请输入您的问题..." value="{{inputMessage}}" bindinput="onInputChange" confirm-type="send" bindconfirm="sendMessage"></input>
+      <view class="input-actions">
+        <view class="action-btn upload-btn" bindtap="chooseImage">
+          <van-icon name="photo-o" size="44rpx" color="#999999" />
+        </view>
+        <view class="action-btn send-btn {{inputMessage ? 'active' : ''}}" bindtap="sendMessage">
+          <van-icon name="arrow-up" size="44rpx" color="var(--primary-color, #1e3a8a)" />
+        </view>
+      </view>
+    </view>
+    <view class="service-options">
+      <view class="service-switch" bindtap="switchToHuman">
+        <van-icon name="user-o" size="32rpx" color="#666666" />
+        <text class="switch-text">转人工服务</text>
+      </view>
+      <view class="chat-tips">工作时间: 8:00-22:00</view>
+    </view>
+  </view>
+</view>

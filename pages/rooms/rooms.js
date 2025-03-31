@@ -106,7 +106,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    // 初始化自定义tabBar
+    const app = getApp();
+    if (app.initTabBar) {
+      app.initTabBar();
+    }
   },
 
   /**
@@ -193,7 +197,7 @@ Page({
   navigateToRoomDetail(e) {
     const id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: `/pages/roomDetail/roomDetail?id=${id}`
+      url: `/packageBooking/roomDetail/roomDetail?id=${id}`
     });
   },
   

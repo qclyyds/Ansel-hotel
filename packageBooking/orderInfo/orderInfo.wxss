@@ -1,0 +1,300 @@
+/* pages/orderInfo/orderInfo.wxss */
+.container {
+  padding: 0 0 200rpx 0;
+  background-color: var(--background-color, #f8f5f0);
+}
+
+/* 顶部状态栏 */
+.status-section {
+  background: var(--primary-gradient, linear-gradient(135deg, #1e3a8a, #2563eb));
+  padding: 60rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+
+.status-icon {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.status-icon.success {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.status-icon.failed {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.icon {
+  font-size: 60rpx;
+  font-weight: bold;
+}
+
+.status-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.status-desc {
+  font-size: 28rpx;
+  opacity: 0.8;
+}
+
+/* 卡片通用样式 */
+.card {
+  background-color: #fff;
+  border-radius: 16rpx;
+  padding: 30rpx;
+  margin: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #f0f0f0;
+  color: var(--primary-color, #1e3a8a);
+}
+
+/* 订单信息 */
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #f9f9f9;
+}
+
+.info-label {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.copy-text {
+  margin-left: 20rpx;
+  color: var(--secondary-color, #d4af37);
+  font-size: 24rpx;
+}
+
+.price-value {
+  color: var(--secondary-color, #d4af37);
+  font-weight: bold;
+}
+
+/* 房间信息 */
+.room-info {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+}
+
+.room-image {
+  width: 160rpx;
+  height: 120rpx;
+  border-radius: 8rpx;
+  margin-right: 20rpx;
+}
+
+.room-brief {
+  flex: 1;
+}
+
+.room-name {
+  font-size: 30rpx;
+  font-weight: 500;
+  margin-bottom: 10rpx;
+  color: var(--primary-color, #1e3a8a);
+}
+
+.room-spec {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.room-date {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 底部按钮 */
+.bottom-buttons {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1rpx solid #f0f0f0;
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.05);
+}
+
+.bottom-buttons .primary-btn,
+.bottom-buttons .secondary-btn {
+  width: 45%;
+  height: 80rpx;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  transition: all 0.3s ease;
+}
+
+.primary-btn {
+  background: var(--primary-gradient, linear-gradient(135deg, #1e3a8a, #2563eb));
+  color: #fff;
+  box-shadow: 0 4rpx 10rpx rgba(30, 58, 138, 0.3);
+  border: none;
+}
+
+.primary-btn:active {
+  opacity: 0.9;
+  transform: translateY(-2rpx);
+}
+
+.secondary-btn {
+  background-color: #fff;
+  color: var(--primary-color, #1e3a8a);
+  border: 1rpx solid var(--primary-color, #1e3a8a);
+}
+
+.secondary-btn:active {
+  background-color: rgba(30, 58, 138, 0.05);
+}
+
+/* 支付弹窗 */
+.payment-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+
+.payment-popup.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup-mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  border-top-left-radius: 20rpx;
+  border-top-right-radius: 20rpx;
+  transform: translateY(100%);
+  transition: transform 0.3s;
+  padding-bottom: 50rpx;
+}
+
+.payment-popup.show .popup-content {
+  transform: translateY(0);
+}
+
+.popup-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.popup-title {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: var(--primary-color, #1e3a8a);
+}
+
+.close-icon {
+  font-size: 40rpx;
+  color: #999;
+}
+
+.payment-qr {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30rpx;
+}
+
+.qr-code {
+  width: 400rpx;
+  height: 400rpx;
+  margin: 20rpx 0;
+  border: 6rpx solid var(--secondary-color, #d4af37);
+  border-radius: 8rpx;
+  padding: 10rpx;
+}
+
+.qr-price {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: var(--secondary-color, #d4af37);
+  margin-bottom: 10rpx;
+}
+
+.qr-tip {
+  font-size: 26rpx;
+  color: #666;
+  margin-bottom: 10rpx;
+}
+
+.qr-countdown {
+  font-size: 26rpx;
+  color: var(--primary-color, #1e3a8a);
+  font-weight: 500;
+  margin-bottom: 30rpx;
+}
+
+.payment-actions {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 50rpx;
+}
+
+.payment-actions .primary-btn,
+.payment-actions .secondary-btn {
+  width: 45%;
+  height: 80rpx;
+  border-radius: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+}

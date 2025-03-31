@@ -1,0 +1,50 @@
+-- 创建订单表
+CREATE TABLE IF NOT EXISTS orders (
+    order_id VARCHAR(32) PRIMARY KEY COMMENT '订单ID',
+    user_id VARCHAR(32) NOT NULL COMMENT '用户ID',
+    room_type_id INT NOT NULL COMMENT '房型ID',
+    room_id INT COMMENT '房间ID',
+    check_in_date DATE NOT NULL COMMENT '入住日期',
+    check_out_date DATE NOT NULL COMMENT '离店日期',
+    nights INT NOT NULL COMMENT '入住晚数',
+    guests INT NOT NULL DEFAULT 1 COMMENT '入住人数',
+    contact_name VARCHAR(50) NOT NULL COMMENT '联系人姓名',
+    contact_phone VARCHAR(20) NOT NULL COMMENT '联系人电话',
+    special_requests TEXT COMMENT '特殊要求',
+    room_price DECIMAL(10,2) NOT NULL COMMENT '房间单价',
+    total_amount DECIMAL(10,2) NOT NULL COMMENT '订单总金额',
+    discount_amount DECIMAL(10,2) NOT NULL DEFAULT 0 COMMENT '优惠金额',
+    payable_amount DECIMAL(10,2) NOT NULL COMMENT '应付金额',
+    used_points INT NOT NULL DEFAULT 0 COMMENT '使用的积分',
+    coupon_id VARCHAR(32) COMMENT '使用的优惠券ID',
+    status TINYINT NOT NULL DEFAULT 1 COMMENT '订单状态：1待支付，2已支付，3已入住，4已完成，5已取消，6已退款',
+    create_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (room_type_id) REFERENCES room_types(type_id),
+    FOREIGN KEY (room_id) REFERENCES rooms(room_id),
+    INDEX idx_user_id (user_id),
+    INDEX idx_room_type_id (room_type_id),
+    INDEX idx_status (status),
+    INDEX idx_check_in_date (check_in_date),
+    INDEX idx_create_time (create_time)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单表';
+
+-- 创建支付表
+CREATE TABLE IF NOT EXISTS payments (
+    payment_id VARCHAR(32) PRIMARY KEY COMMENT '支付ID',
+    order_id VARCHAR(32) NOT NULL COMMENT '订单ID',
+    user_id VARCHAR(32) NOT NULL COMMENT '用户ID',
+    payment_method VARCHAR(20) NOT NULL COMMENT '支付方式：wechat, alipay',
+    transaction_id VARCHAR(64) COMMENT '第三方交易ID',
+    amount DECIMAL(10,2) NOT NULL COMMENT '支付金额',
+    status TINYINT NOT NULL DEFAULT 1 COMMENT '支付状态：1待支付，2支付成功，3支付失败，4已退款',
+    payment_time DATETIME COMMENT '支付时间',
+    create_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    update_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    FOREIGN KEY (order_id) REFERENCES orders(order_id),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    INDEX idx_order_id (order_id),
+    INDEX idx_user_id (user_id),
+    INDEX idx_status (status)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='支付表'; 

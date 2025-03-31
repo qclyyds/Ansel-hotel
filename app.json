@@ -2,64 +2,118 @@
   "pages": [
     "pages/index/index",
     "pages/rooms/rooms",
-    "pages/roomDetail/roomDetail",
-    "pages/booking/booking",
-    "pages/orderInfo/orderInfo",
     "pages/myOrders/myOrders",
     "pages/member/member",
     "pages/about/about",
-    "pages/contact/contact",
-    "pages/aiChat/aiChat",
-    "pages/hotelInfo/hotelInfo",
-    "pages/dining/dining",
-    "pages/feedback/feedback",
-    "pages/aboutUs/aboutUs",
     "pages/logs/logs"
+  ],
+  "subPackages": [
+    {
+      "root": "packageBooking",
+      "name": "booking",
+      "pages": [
+        "roomDetail/roomDetail",
+        "booking/booking",
+        "orderInfo/orderInfo"
+      ]
+    },
+    {
+      "root": "packageService",
+      "name": "service",
+      "pages": [
+        "aiChat/aiChat",
+        "dining/dining",
+        "feedback/feedback"
+      ]
+    },
+    {
+      "root": "packageInfo",
+      "name": "info",
+      "pages": [
+        "hotelInfo/hotelInfo",
+        "contact/contact",
+        "aboutUs/aboutUs"
+      ]
+    }
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "Ansel Hotel",
-    "navigationBarBackgroundColor": "#ffffff"
+    "navigationBarTitleText": "ANSEL安泽酒店",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#f8f8f8",
+    "backgroundTextStyle": "light"
   },
   "tabBar": {
+    "custom": true,
     "color": "#999999",
-    "selectedColor": "#9d8252",
+    "selectedColor": "#1e3a8a",
     "backgroundColor": "#ffffff",
+    "borderStyle": "white",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "首页",
-        "iconPath": "images/tabbar/home.png",
-        "selectedIconPath": "images/tabbar/home_selected.png"
+        "text": "首页"
       },
       {
         "pagePath": "pages/rooms/rooms",
-        "text": "客房",
-        "iconPath": "images/tabbar/room.png",
-        "selectedIconPath": "images/tabbar/room_selected.png"
+        "text": "客房"
       },
       {
         "pagePath": "pages/myOrders/myOrders",
-        "text": "订单",
-        "iconPath": "images/tabbar/order.png",
-        "selectedIconPath": "images/tabbar/order_selected.png"
+        "text": "订单"
       },
       {
         "pagePath": "pages/member/member",
-        "text": "我的",
-        "iconPath": "images/tabbar/my.png",
-        "selectedIconPath": "images/tabbar/my_selected.png"
+        "text": "我的"
       },
       {
         "pagePath": "pages/about/about",
-        "text": "更多",
-        "iconPath": "images/tabbar/more.png",
-        "selectedIconPath": "images/tabbar/more_selected.png"
+        "text": "更多"
       }
     ]
+  },
+  "usingComponents": {
+    "van-button": "@vant/weapp/button/index",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-field": "@vant/weapp/field/index",
+    "van-calendar": "@vant/weapp/calendar/index",
+    "van-popup": "@vant/weapp/popup/index",
+    "van-stepper": "@vant/weapp/stepper/index",
+    "van-rate": "@vant/weapp/rate/index",
+    "van-tag": "@vant/weapp/tag/index",
+    "van-checkbox": "@vant/weapp/checkbox/index",
+    "van-checkbox-group": "@vant/weapp/checkbox-group/index",
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-toast": "@vant/weapp/toast/index",
+    "van-loading": "@vant/weapp/loading/index",
+    "van-notice-bar": "@vant/weapp/notice-bar/index",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-tabbar": "@vant/weapp/tabbar/index",
+    "van-tabbar-item": "@vant/weapp/tabbar-item/index"
   },
   "style": "v2",
   "componentFramework": "glass-easel",
   "sitemapLocation": "sitemap.json",
-  "lazyCodeLoading": "requiredComponents"
+  "lazyCodeLoading": "requiredComponents",
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": ["booking"]
+    },
+    "pages/rooms/rooms": {
+      "network": "all",
+      "packages": ["booking"]
+    },
+    "pages/about/about": {
+      "network": "all",
+      "packages": ["info", "service"]
+    },
+    "pages/member/member": {
+      "network": "all",
+      "packages": ["booking"]
+    }
+  }
 }

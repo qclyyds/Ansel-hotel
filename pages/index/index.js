@@ -54,7 +54,9 @@ Page({
         size: '65平方米',
         bedType: '1张特大床',
         view: '城市景观',
-        price: '1,280'
+        price: '1,280',
+        rating: '4.9',
+        tag: '热门'
       },
       {
         id: 2,
@@ -63,7 +65,9 @@ Page({
         size: '92平方米',
         bedType: '1张特大床',
         view: '花园景观',
-        price: '1,680'
+        price: '1,680',
+        rating: '4.8',
+        tag: '推荐'
       },
       {
         id: 3,
@@ -72,20 +76,32 @@ Page({
         size: '110平方米',
         bedType: '2张大床',
         view: '花园景观',
-        price: '2,180'
+        price: '2,180',
+        rating: '4.7',
+        tag: '新上线'
       }
     ],
     
     // 酒店服务
     services: [
-      { id: 1, name: '24小时客房服务', icon: '/images/icons/service-room.png' },
-      { id: 2, name: 'SPA服务', icon: '/images/icons/service-spa.png' },
-      { id: 3, name: '健身中心', icon: '/images/icons/service-gym.png' },
-      { id: 4, name: '游泳池', icon: '/images/icons/service-pool.png' },
-      { id: 5, name: '餐厅', icon: '/images/icons/service-restaurant.png' },
-      { id: 6, name: '商务中心', icon: '/images/icons/service-business.png' },
-      { id: 7, name: '会议室', icon: '/images/icons/service-meeting.png' },
-      { id: 8, name: '停车场', icon: '/images/icons/service-parking.png' }
+      { id: 1, name: '24小时客房服务', icon: 'service-o' },
+      { id: 2, name: 'SPA服务', icon: 'hot-o' },
+      { id: 3, name: '健身中心', icon: 'brush-o' },
+      { id: 4, name: '游泳池', icon: 'underway-o' },
+      { id: 5, name: '餐厅', icon: 'shop-o' },
+      { id: 6, name: '商务中心', icon: 'desktop-o' },
+      { id: 7, name: '会议室', icon: 'friends-o' },
+      { id: 8, name: '停车场', icon: 'setting-o' }
+    ],
+    
+    // 会员特权
+    memberPrivileges: [
+      { id: 1, name: '免费早餐', icon: 'coffee-o' },
+      { id: 2, name: '优先升级', icon: 'upgrade' },
+      { id: 3, name: '优先入住', icon: 'medal-o' },
+      { id: 4, name: '生日礼遇', icon: 'gift-o' },
+      { id: 5, name: '会员折扣', icon: 'coupon-o' },
+      { id: 6, name: '行政酒廊', icon: 'gem-o' }
     ]
   },
   bindViewTap() {
@@ -165,15 +181,26 @@ Page({
   },
   // 查看全部房间
   navigateToRooms() {
+    console.log("正在跳转到房间列表页面...");
     wx.navigateTo({
-      url: '/pages/rooms/rooms'
+      url: '/pages/rooms/rooms',
+      success: function() {
+        console.log("成功跳转到房间列表页面");
+      },
+      fail: function(err) {
+        console.error("跳转失败:", err);
+        wx.showToast({
+          title: '跳转失败，请稍后再试',
+          icon: 'none'
+        });
+      }
     });
   },
   // 查看房间详情
   navigateToRoomDetail(e) {
     const id = e.currentTarget.dataset.id;
     wx.navigateTo({
-      url: `/pages/roomDetail/roomDetail?id=${id}`
+      url: `/packageBooking/roomDetail/roomDetail?id=${id}`
     });
   },
   // 查看关于酒店
@@ -185,7 +212,131 @@ Page({
   // 跳转到智能助理
   navigateToAiChat() {
     wx.navigateTo({
-      url: '/pages/aiChat/aiChat'
+      url: '/packageService/aiChat/aiChat'
     });
+  },
+  // 跳转到服务页面
+  navigateToService(e) {
+    const serviceId = e.currentTarget.dataset.id;
+    let url = '';
+    
+    // 根据服务ID跳转到不同的服务页面
+    switch(serviceId) {
+      case 1: // 24小时客房服务
+        wx.navigateTo({ url: '/packageService/aiChat/aiChat' });
+        break;
+      case 2: // SPA服务
+        wx.navigateTo({ url: '/packageService/dining/dining?type=spa' });
+        break;
+      case 5: // 餐厅
+        wx.navigateTo({ url: '/packageService/dining/dining' });
+        break;
+      case 7: // 会议室
+        wx.navigateTo({ url: '/packageInfo/hotelInfo/hotelInfo?tab=facilities' });
+        break;
+      default:
+        wx.showToast({
+          title: '功能开发中',
+          icon: 'none'
+        });
+    }
+  },
+  // 跳转到会员中心
+  navigateToMember() {
+    wx.switchTab({
+      url: '/pages/member/member'
+    });
+  },
+  // 跳转到会员特权详情
+  navigateToMemberDetail(e) {
+    const privilegeId = e.currentTarget.dataset.id;
+    wx.switchTab({
+      url: '/pages/member/member',
+      success: () => {
+        wx.showToast({
+          title: '特权查看中',
+          icon: 'success'
+        });
+      }
+    });
+  },
+  // 统一处理"查看全部"按钮点击
+  handleViewAllClick(e) {
+    const target = e.currentTarget.dataset.target;
+    console.log('查看全部按钮点击，目标页面：', target);
+    
+    switch(target) {
+      case 'rooms':
+        console.log('正在跳转到房间列表页面...');
+        wx.navigateTo({
+          url: '/pages/rooms/rooms',
+          success: function() {
+            console.log('成功跳转到房间列表页面');
+          },
+          fail: function(err) {
+            console.error('跳转失败:', err);
+            // 尝试使用switchTab方式跳转（因为rooms页面也在tabBar中）
+            wx.switchTab({
+              url: '/pages/rooms/rooms',
+              fail: function(switchErr) {
+                console.error('switchTab也失败了:', switchErr);
+                wx.showToast({
+                  title: '跳转失败，请稍后再试',
+                  icon: 'none'
+                });
+              }
+            });
+          }
+        });
+        break;
+      case 'member':
+        console.log('正在跳转到会员中心...');
+        wx.switchTab({
+          url: '/pages/member/member',
+          success: function() {
+            console.log('成功跳转到会员中心');
+          },
+          fail: function(err) {
+            console.error('跳转到会员中心失败:', err);
+            wx.showToast({
+              title: '跳转失败，请稍后再试',
+              icon: 'none'
+            });
+          }
+        });
+        break;
+      case 'about':
+        console.log('正在跳转到关于页面...');
+        wx.switchTab({
+          url: '/pages/about/about',
+          success: function() {
+            console.log('成功跳转到关于页面');
+          },
+          fail: function(err) {
+            console.error('跳转到关于页面失败:', err);
+            // 尝试使用navigateTo方式跳转
+            wx.navigateTo({
+              url: '/pages/about/about',
+              fail: function(navErr) {
+                console.error('navigateTo也失败了:', navErr);
+                wx.showToast({
+                  title: '跳转失败，请稍后再试',
+                  icon: 'none'
+                });
+              }
+            });
+          }
+        });
+        break;
+      default:
+        console.warn('未知的目标页面:', target);
+    }
+  },
+  onShow() {
+    // 初始化自定义tabBar
+    const app = getApp();
+    if (app.initTabBar) {
+      app.initTabBar();
+    }
   }
 })

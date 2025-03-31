@@ -30,6 +30,12 @@ Page({
   onShow() {
     // 页面显示时刷新数据
     this.loadOrders();
+    
+    // 初始化自定义tabBar
+    const app = getApp();
+    if (app.initTabBar) {
+      app.initTabBar();
+    }
   },
 
   /**

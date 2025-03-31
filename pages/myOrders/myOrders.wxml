@@ -44,34 +44,35 @@
           </view>
         </view>
         
-        <!-- 房间信息 -->
-        <view class="room-info">
-          <image class="room-image" src="{{item.roomImage}}" mode="aspectFill"></image>
-          <view class="room-details">
-            <view class="room-name">{{item.roomName}}</view>
-            <view class="room-date">{{item.checkInDate}} - {{item.checkOutDate}} ({{item.nights}}晚)</view>
-            <view class="room-price">¥{{item.totalPrice}}</view>
-          </view>
+        <!-- 房间信息 优化版 -->
+        <view class="room-info-simple">
+          <view class="room-name">{{item.roomName}}</view>
+          <view class="room-date">{{item.checkInDate}} - {{item.checkOutDate}} ({{item.nights}}晚)</view>
+          <view class="room-price">¥{{item.totalPrice}}</view>
+        </view>
+        
+        <!-- 下单时间 - 独立行 -->
+        <view class="order-time-row">
+          <view class="order-time">下单时间: {{item.orderTime}}</view>
         </view>
         
         <!-- 订单底部 -->
         <view class="order-footer">
-          <view class="order-time">下单时间: {{item.orderTime}}</view>
           <view class="order-actions">
             <!-- 待支付订单 -->
             <block wx:if="{{item.status === 'pending'}}">
               <button class="action-btn primary" catchtap="continuePay" data-id="{{item.id}}" data-roomid="{{item.roomId}}" data-price="{{item.totalPrice}}">继续支付</button>
-              <button class="action-btn" catchtap="cancelOrder" data-id="{{item.id}}">取消预订</button>
+              <button class="action-btn secondary" catchtap="cancelOrder" data-id="{{item.id}}">取消预订</button>
             </block>
             
             <!-- 已完成订单 -->
             <block wx:elif="{{item.status === 'completed'}}">
-              <button class="action-btn" catchtap="deleteOrder" data-id="{{item.id}}">删除订单</button>
+              <button class="action-btn secondary" catchtap="deleteOrder" data-id="{{item.id}}">删除订单</button>
             </block>
             
             <!-- 已取消订单 -->
             <block wx:else>
-              <button class="action-btn" catchtap="deleteOrder" data-id="{{item.id}}">删除订单</button>
+              <button class="action-btn secondary" catchtap="deleteOrder" data-id="{{item.id}}">删除订单</button>
             </block>
           </view>
         </view>
